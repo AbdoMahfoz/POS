@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,11 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>true</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -96,13 +102,7 @@
     <AndroidResource Include="Resources\drawable\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bg.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bg-circle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\blue-bg.png" />
+    <AndroidResource Include="Resources\drawable\bg_circle.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\cart.png" />
@@ -120,31 +120,31 @@
     <AndroidResource Include="Resources\drawable\favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\gray-favorite.png" />
+    <AndroidResource Include="Resources\drawable\grey_favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\grey_ham_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\highlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\layer-9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\layer-10.png" />
+    <AndroidResource Include="Resources\drawable\layer_10.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\menu-icon.png" />
+    <AndroidResource Include="Resources\drawable\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\next-icon-copy.png" />
+    <AndroidResource Include="Resources\drawable\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\save-of-later.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\search-icon.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\up.png" />
@@ -153,226 +153,208 @@
     <AndroidResource Include="Resources\drawable-hdpi\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\bg-circle-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bg_circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\bg-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\cart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\blue-bg-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\change.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\cart-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\change-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\down.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\delete-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\down-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\grey_favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\favorite-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\grey_ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\gray-favorite-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\highlight-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\highlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\layer-9-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\layer_10.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\layer-10-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\menu-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\menu-icon-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\next-icon-copy-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\save-of-later-hdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\search-icon-hdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\up-hdpi.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\up.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\bg-circle-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bg_circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\bg-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\cart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\blue-bg-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\change.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\cart-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\change-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\down.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\delete-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\down-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grey_favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\favorite-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\grey_ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\gray-favorite-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\highlight-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\highlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\layer-9-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\layer_10.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\layer-10-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\menu-icon-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\menu-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\next-icon-copy-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\save-of-later-xhdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\search-icon-xhdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\up-xhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\up.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\bg-circle-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\bg_circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\bg-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\cart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\blue-bg-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\change.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\cart-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\change-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\down.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\delete-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\down-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\grey_favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\favorite-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\grey_ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\gray-favorite-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\highlight-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\highlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\layer-9-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\layer_10.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\layer-10-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu-icon-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\next-icon-copy-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\save-of-later-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\up.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\search-icon-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\bg.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\up-xxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\bg_circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\bg-circle-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blue_bg.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\bg-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\cart.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\blue-bg-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\change.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\cart-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\change-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\down.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\delete-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\down-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\grey_favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\favorite-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\grey_ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\gray-favorite-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\highlight-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\highlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\layer-9-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\layer_10.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\layer-10-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu-icon-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\next-icon-copy-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\save-of-later-xxxhdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\search-icon-xxxhdpi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\up-xxxhdpi.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\up.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

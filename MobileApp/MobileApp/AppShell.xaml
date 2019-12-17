@@ -24,4 +24,11 @@
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
         </ResourceDictionary>
     </Shell.Resources>
+
+    <TabBar Route="LoginTabBar">
+        <ShellSection>
+            <!--<ShellContent Shell.FlyoutBehavior="Disabled" Route="LoginPageViewModel" ContentTemplate="{DataTemplate local:LoginPage}">
+            </ShellContent>-->
+        </ShellSection>
+    </TabBar>
 </Shell>

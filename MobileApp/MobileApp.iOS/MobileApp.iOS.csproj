@@ -140,15 +140,6 @@
     <BundleResource Include="Resources\background%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\blue-bg.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\blue-bg%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\blue-bg%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\cart.png" />
   </ItemGroup>
   <ItemGroup>
@@ -185,31 +176,40 @@
     <BundleResource Include="Resources\down%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\favorite.png" />
+    <BundleResource Include="Resources\grey_favorite.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\favorite%402x.png" />
+    <BundleResource Include="Resources\grey_favorite%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\favorite%403x.png" />
+    <BundleResource Include="Resources\grey_favorite%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-9.png" />
+    <BundleResource Include="Resources\grey_ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-9%402x.png" />
+    <BundleResource Include="Resources\grey_ham_menu%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-9%403x.png" />
+    <BundleResource Include="Resources\grey_ham_menu%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-10.png" />
+    <BundleResource Include="Resources\ham_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-10%402x.png" />
+    <BundleResource Include="Resources\ham_menu%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\layer-10%403x.png" />
+    <BundleResource Include="Resources\ham_menu%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer_10%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer_10%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\menu.png" />
@@ -221,40 +221,31 @@
     <BundleResource Include="Resources\menu%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\menu-icon.png" />
+    <BundleResource Include="Resources\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\menu-icon%402x.png" />
+    <BundleResource Include="Resources\next%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\menu-icon%403x.png" />
+    <BundleResource Include="Resources\next%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\next-icon-copy-4.png" />
+    <BundleResource Include="Resources\save.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\next-icon-copy-4%402x.png" />
+    <BundleResource Include="Resources\save%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\next-icon-copy-4%403x.png" />
+    <BundleResource Include="Resources\save%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\save-of-later.png" />
+    <BundleResource Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\save-of-later%402x.png" />
+    <BundleResource Include="Resources\search%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\save-of-later%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\search-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\search-icon%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\search-icon%403x.png" />
+    <BundleResource Include="Resources\search%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\up.png" />
@@ -264,14 +255,5 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\up%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\your-product.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\your-product%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\your-product%403x.png" />
   </ItemGroup>
 </Project>
