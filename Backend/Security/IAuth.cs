@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Backend.Models;
 
 namespace Backend.Security
 {
-    internal interface IAuth
+    public interface IAuth
     {
+        User GetUser(string token);
+        string Login(string userName, string password);
+        bool Register(string userName, string password);
     }
 }
