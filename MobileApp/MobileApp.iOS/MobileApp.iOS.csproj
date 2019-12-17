@@ -130,4 +130,148 @@
       <Name>MobileApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\background%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\background%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blue-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blue-bg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\blue-bg%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cart%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cart%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\change.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\change%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\change%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delete%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delete%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\down%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\down%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\favorite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\favorite%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\favorite%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-9%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-9%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-10%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\layer-10%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu-icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu-icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next-icon-copy-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next-icon-copy-4%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next-icon-copy-4%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\save-of-later.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\save-of-later%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\save-of-later%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search-icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search-icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\up%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\up%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\your-product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\your-product%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\your-product%403x.png" />
+  </ItemGroup>
 </Project>
