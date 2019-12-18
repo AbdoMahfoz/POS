@@ -14,61 +14,112 @@ namespace BackendService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/Backend")]
-    public partial class CompositeType : object
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    public partial class RegisterRequest : object
     {
         
-        private bool BoolValueField;
+        private string AddressField;
         
-        private string StringValueField;
+        private string AreaField;
+        
+        private string EmailField;
+        
+        private string NameField;
+        
+        private string PasswordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue
+        public string Address
         {
             get
             {
-                return this.BoolValueField;
+                return this.AddressField;
             }
             set
             {
-                this.BoolValueField = value;
+                this.AddressField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue
+        public string Area
         {
             get
             {
-                return this.StringValueField;
+                return this.AreaField;
             }
             set
             {
-                this.StringValueField = value;
+                this.AreaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email
+        {
+            get
+            {
+                return this.EmailField;
+            }
+            set
+            {
+                this.EmailField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.NameField;
+            }
+            set
+            {
+                this.NameField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this.PasswordField;
+            }
+            set
+            {
+                this.PasswordField = value;
             }
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BackendService.IService1")]
-    public interface IService1
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BackendService.ITestService")]
+    public interface ITestService
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetData", ReplyAction="http://tempuri.org/IService1/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Login", ReplyAction="http://tempuri.org/IAuthenticatedService/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<BackendService.CompositeType> GetDataUsingDataContractAsync(BackendService.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Register", ReplyAction="http://tempuri.org/IAuthenticatedService/RegisterResponse")]
+        System.Threading.Tasks.Task<bool> RegisterAsync(BackendService.RegisterRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestService/DoWork", ReplyAction="http://tempuri.org/ITestService/DoWorkResponse")]
+        System.Threading.Tasks.Task<string> DoWorkAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITestService/GetCurrentUser", ReplyAction="http://tempuri.org/ITestService/GetCurrentUserResponse")]
+        System.Threading.Tasks.Task<BackendService.RegisterRequest> GetCurrentUserAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    public interface IService1Channel : BackendService.IService1, System.ServiceModel.IClientChannel
+    public interface ITestServiceChannel : BackendService.ITestService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<BackendService.IService1>, BackendService.IService1
+    public partial class TestServiceClient : System.ServiceModel.ClientBase<BackendService.ITestService>, BackendService.ITestService
     {
         
         /// <summary>
@@ -78,47 +129,57 @@ namespace BackendService
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public Service1Client() : 
-                base(Service1Client.GetDefaultBinding(), Service1Client.GetDefaultEndpointAddress())
+        public TestServiceClient() : 
+                base(TestServiceClient.GetDefaultBinding(), TestServiceClient.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IService1.ToString();
+            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_ITestService.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public Service1Client(EndpointConfiguration endpointConfiguration) : 
-                base(Service1Client.GetBindingForEndpoint(endpointConfiguration), Service1Client.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public Service1Client(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(Service1Client.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
+        public TestServiceClient(EndpointConfiguration endpointConfiguration) : 
+                base(TestServiceClient.GetBindingForEndpoint(endpointConfiguration), TestServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public Service1Client(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(Service1Client.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        public TestServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(TestServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public TestServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(TestServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public TestServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value)
+        public System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password)
         {
-            return base.Channel.GetDataAsync(value);
+            return base.Channel.LoginAsync(Email, Password);
         }
         
-        public System.Threading.Tasks.Task<BackendService.CompositeType> GetDataUsingDataContractAsync(BackendService.CompositeType composite)
+        public System.Threading.Tasks.Task<bool> RegisterAsync(BackendService.RegisterRequest request)
         {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
+            return base.Channel.RegisterAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<string> DoWorkAsync()
+        {
+            return base.Channel.DoWorkAsync();
+        }
+        
+        public System.Threading.Tasks.Task<BackendService.RegisterRequest> GetCurrentUserAsync()
+        {
+            return base.Channel.GetCurrentUserAsync();
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
@@ -133,13 +194,13 @@ namespace BackendService
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService1))
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_ITestService))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                System.ServiceModel.NetTcpBinding result = new System.ServiceModel.NetTcpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
-                result.AllowCookies = true;
+                result.Security.Mode = System.ServiceModel.SecurityMode.None;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -147,27 +208,27 @@ namespace BackendService
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService1))
+            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_ITestService))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:50470/Service1.svc");
+                return new System.ServiceModel.EndpointAddress("net.tcp://localhost:8090/");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return Service1Client.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IService1);
+            return TestServiceClient.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_ITestService);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return Service1Client.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IService1);
+            return TestServiceClient.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_ITestService);
         }
         
         public enum EndpointConfiguration
         {
             
-            BasicHttpBinding_IService1,
+            NetTcpBinding_ITestService,
         }
     }
 }
