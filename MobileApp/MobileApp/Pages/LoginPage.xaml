@@ -23,13 +23,11 @@
                 <controls:RoundedCornerEntry
                     IsEmail="True"
                     Placeholder="Email"
-                    ReturnType="Next"
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding Email}" />
                 <controls:RoundedCornerEntry
                     IsPassword="True"
                     Placeholder="Password"
-                    ReturnType="Next"
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding Password}" />
                 <Button

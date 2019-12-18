@@ -10,7 +10,12 @@ namespace MobileApp.PageModels
         public string Email { get; set; }
         public string Password { get; set; }
         public Command NavigateToLogin { get; set; }
-        public Command NavigateToRegistration { get; set; }
+
+        public Command NavigateToRegistration
+        {
+            get { return new Command(async () => { await CoreMethods.PushPageModel<RegistrationPageModel>(); }); }
+        }
+
         public Command NavigateToGPlus { get; set; }
 
     }

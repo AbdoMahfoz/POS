@@ -27,6 +27,7 @@
             <Style x:Key="LoginEntry" TargetType="controls:RoundedCornerEntry">
 
                 <Setter Property="TextColor" Value="Black" />
+                <Setter Property="ReturnType" Value="Next" />
                 <Setter Property="IsTextPredictionEnabled" Value="True" />
                 <Setter Property="FontSize" Value="Large" />
                 <Setter Property="BackgroundColor" Value="White" />
