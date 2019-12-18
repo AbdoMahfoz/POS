@@ -1,9 +1,12 @@
 ﻿using Backend.Repository;
-using Backend.Security;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Backend.Models;
+using Backend.Security.Interfaces;
+using Backend.Security.Implementations;
+using Backend.Services;
+using Backend.Repository.ExtendedRepositories;
 
 namespace Backend
 {
@@ -12,9 +15,12 @@ namespace Backend
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<ApplicationDbContext>(),
-                Component.For<IAuth, JWTAuth>(),
-                Component.For(typeof(IRepository<>), typeof(Repository<>))
+                Component.For<ITestService, TestService>().LifestyleTransient(),
+                Component.For<ApplicationDbContext>().LifestyleTransient(),
+                Component.For<IAuth, Auth>().LifestyleTransient(),
+                Component.For<IHash, Hash>().LifestyleSingleton(),
+                Component.For(typeof(IRepository<>), typeof(Repository<>)).LifestyleTransient(),
+                Component.For<IUserRepository, UserRepository>().LifestyleTransient()
             );
         }
     }
