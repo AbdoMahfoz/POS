@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Graphics.Drawables;
 using Android.Text;
+using Android.Views;
 using Android.Views.InputMethods;
 using MobileApp.Controls;
 using MobileApp.Droid.CustomRenderer;
@@ -25,12 +26,12 @@ namespace MobileApp.Droid.CustomRenderer
             {
                 var gradient = new GradientDrawable();
                 var roundedEntry = Element as RoundedCornerEntry;
-                var padding = (int)Utils.ConvertDpToPixel(Context, 10);
+                var padding = (int) Utils.ConvertDpToPixel(Context, 10);
 
                 if (roundedEntry != null)
                 {
                     gradient.SetStroke(roundedEntry.BorderThickness, roundedEntry.BorderColor.ToAndroid());
-                    gradient.SetCornerRadius(Utils.ConvertDpToPixel(Context, roundedEntry.BorderRadius));
+                    gradient.SetCornerRadius(Utils.ConvertDpToPixel(Context, (float) roundedEntry.BorderRadius));
                     gradient.SetColor(roundedEntry.EntryBackgroundColor.ToAndroid());
                     SetReturnType(roundedEntry);
 
@@ -45,9 +46,11 @@ namespace MobileApp.Droid.CustomRenderer
                     };
                 }
 
-                if (!roundedEntry.DisplaySuggestions) Control.InputType = InputTypes.TextFlagNoSuggestions;
+                if (roundedEntry != null && !roundedEntry.DisplaySuggestions)
+                    Control.InputType = InputTypes.TextFlagNoSuggestions;
 
                 Control.Background = gradient;
+                Control.Gravity = GravityFlags.CenterVertical;
                 Control.SetPadding(padding, padding, padding, padding);
             }
         }

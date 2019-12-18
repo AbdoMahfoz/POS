@@ -1,4 +1,5 @@
-﻿using CoreGraphics;
+﻿using System;
+using CoreGraphics;
 using MobileApp.Controls;
 using MobileApp.iOS.CustomRenderers;
 using UIKit;
@@ -21,7 +22,7 @@ namespace MobileApp.iOS.CustomRenderers
 
                 if (roundedView != null)
                 {
-                    NativeView.Layer.CornerRadius = roundedView.BorderRadius;
+                    NativeView.Layer.CornerRadius =(nfloat)roundedView.BorderRadius;
                     NativeView.Layer.BorderWidth = roundedView.BorderThickness;
                     NativeView.Layer.BorderColor = roundedView.BorderColor.ToCGColor();
                     NativeView.Layer.BackgroundColor = roundedView.EntryBackgroundColor.ToCGColor();
