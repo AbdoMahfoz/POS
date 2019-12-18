@@ -1,6 +1,6 @@
-﻿using System;
+﻿using FreshMvvm;
+using MobileApp.PageModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MobileApp
 {
@@ -9,8 +9,13 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            LoadBasicNav();
+        }
+        public void LoadBasicNav()
+        {
+            var page = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+            var basicNavContainer = new FreshNavigationContainer(page);
+            MainPage = basicNavContainer;
         }
 
         protected override void OnStart()

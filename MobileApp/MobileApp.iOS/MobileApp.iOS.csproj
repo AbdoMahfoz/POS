@@ -60,6 +60,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\RoundedEntryRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -256,4 +257,5 @@
   <ItemGroup>
     <BundleResource Include="Resources\up%403x.png" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

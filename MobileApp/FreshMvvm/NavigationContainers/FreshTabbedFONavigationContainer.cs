@@ -41,7 +41,7 @@ namespace FreshMvvm
             var container = CreateContainerPageSafe (page);
             container.Title = title;
             if (!string.IsNullOrWhiteSpace(icon))
-                container.Icon = icon;
+                container.IconImageSource = icon;
             _innerTabbedPage.Children.Add (container);
             return container;
         }

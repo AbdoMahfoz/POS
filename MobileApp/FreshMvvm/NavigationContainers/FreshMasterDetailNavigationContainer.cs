@@ -9,11 +9,11 @@ namespace FreshMvvm
 {
     public class FreshMasterDetailNavigationContainer : Xamarin.Forms.MasterDetailPage, IFreshNavigationService
     {
-        List<Page> _pagesInner = new List<Page> ();
+        readonly List<Page> _pagesInner = new List<Page> ();
         Dictionary<string, Page> _pages = new Dictionary<string, Page> ();
         ContentPage _menuPage;
         ObservableCollection<string> _pageNames = new ObservableCollection<string> ();
-	ListView _listView = new ListView ();
+        private readonly ListView _listView = new ListView ();
 
         public Dictionary<string, Page> Pages { get { return _pages; } }
         protected ObservableCollection<string> PageNames { get { return _pageNames; } }
@@ -96,7 +96,7 @@ namespace FreshMvvm
             var navPage = new NavigationPage (_menuPage) { Title = "Menu" };
 
             if (!string.IsNullOrEmpty (menuIcon))
-                navPage.Icon = menuIcon;
+                navPage.IconImageSource = menuIcon;
             
             Master = navPage;
         }

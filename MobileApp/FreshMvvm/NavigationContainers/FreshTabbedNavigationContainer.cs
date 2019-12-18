@@ -35,7 +35,7 @@ namespace FreshMvvm
             var navigationContainer = CreateContainerPageSafe (page);
             navigationContainer.Title = title;
             if (!string.IsNullOrWhiteSpace(icon))
-                navigationContainer.Icon = icon;
+                navigationContainer.IconImageSource = icon;
             Children.Add (navigationContainer);
             return navigationContainer;
         }

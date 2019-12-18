@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage
+    x:Class="MobileApp.Pages.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MobileApp.Controls;assembly=MobileApp"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundImageSource="background.png"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,75" Spacing="25">
+                <Label
+                    Margin="0,0,0,75"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource LabelStyle}"
+                    Text="E commerce App" />
+                <controls:RoundedCornerEntry
+                    IsEmail="True"
+                    Placeholder="Email"
+                    ReturnType="Next"
+                    Style="{StaticResource LoginEntry}"
+                    Text="{Binding Email}" />
+                <controls:RoundedCornerEntry
+                    IsPassword="True"
+                    Placeholder="Password"
+                    ReturnType="Next"
+                    Style="{StaticResource LoginEntry}"
+                    Text="{Binding Password}" />
+                <Button
+                    Command="{Binding NavigateToLogin}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="LOGIN" />
+
+                <Button
+                    BackgroundColor="{StaticResource SecColor}"
+                    Command="{Binding NavigateToRegistration}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Register" />
+
+                <Button
+                    BackgroundColor="#dd4c39"
+                    Command="{Binding NavigateToGPlus}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Sign Up with Google" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>
