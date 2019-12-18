@@ -1,4 +1,5 @@
-﻿using Backend.Security.Implementations;
+﻿using Backend.DataContracts;
+using Backend.Security.Implementations;
 using Backend.Security.Interfaces;
 using System.ServiceModel;
 
@@ -14,7 +15,12 @@ namespace Backend.Services
             {
                 return "Unauthenticated";
             }
-            return User.UserName;
+            return User.Email;
+        }
+        public RegisterRequest GetCurrentUser()
+        {
+            if (User == null) return null;
+            return Helpers.MapTo<RegisterRequest>(User);
         }
     }
 }

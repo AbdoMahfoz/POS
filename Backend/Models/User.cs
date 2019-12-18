@@ -1,18 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Models
 {
     public class User : BaseModel
     {
         [Required]
-        public string UserName { get; set; }
+        public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-        public bool LoggedIn { get; set; } = false;
-        public DateTime? LastLogOut { get; set; }
-        [NotMapped]
-        public string Token { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Area { get; set; }
     }
 }

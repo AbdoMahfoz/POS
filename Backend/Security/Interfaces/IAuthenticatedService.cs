@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using Backend.DataContracts;
+using System.ServiceModel;
 
 namespace Backend.Security.Interfaces
 {
@@ -6,8 +7,8 @@ namespace Backend.Security.Interfaces
     public interface IAuthenticatedService
     {
         [OperationContract]
-        bool Login(string Username, string Password);
+        bool Login(string Email, string Password);
         [OperationContract]
-        bool Register(string Username, string Password);
+        bool Register(RegisterRequest request);
     }
 }

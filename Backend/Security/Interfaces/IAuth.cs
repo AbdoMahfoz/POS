@@ -1,10 +1,11 @@
-﻿using Backend.Models;
+﻿using Backend.DataContracts;
+using Backend.Models;
 
 namespace Backend.Security.Interfaces
 {
     public interface IAuth
     {
-        User Login(string userName, string password);
-        User Register(string userName, string password);
+        User Login(string email, string password);
+        User Register(RegisterRequest request);
     }
 }

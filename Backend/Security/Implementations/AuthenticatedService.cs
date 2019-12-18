@@ -1,10 +1,9 @@
-﻿using Backend.Models;
+﻿using Backend.DataContracts;
+using Backend.Models;
 using Backend.Security.Interfaces;
-using System.ServiceModel;
 
 namespace Backend.Security.Implementations
 {
-    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public abstract class AuthenticatedService : IAuthenticatedService
     {
         private readonly IAuth Auth;
@@ -13,9 +12,9 @@ namespace Backend.Security.Implementations
         {
             this.Auth = Auth;
         }
-        public bool Login(string Username, string Password)
+        public bool Login(string Email, string Password)
         {
-            User u = Auth.Login(Username, Password);
+            User u = Auth.Login(Email, Password);
             if(u != null)
             {
                 User = u;
@@ -23,9 +22,9 @@ namespace Backend.Security.Implementations
             }
             return false;
         }
-        public bool Register(string Username, string Password)
+        public bool Register(RegisterRequest request)
         {
-            User u = Auth.Register(Username, Password);
+            User u = Auth.Register(request);
             if (u != null)
             {
                 User = u;

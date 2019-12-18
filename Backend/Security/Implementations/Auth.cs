@@ -1,4 +1,5 @@
-﻿using Backend.Models;
+﻿using Backend.DataContracts;
+using Backend.Models;
 using Backend.Repository.ExtendedRepositories;
 using Backend.Security.Interfaces;
 
@@ -13,23 +14,20 @@ namespace Backend.Security.Implementations
             this.Hash = Hash;
             this.UserRepository = UserRepository;
         }
-        public User Login(string userName, string password)
+        public User Login(string email, string password)
         {
-            User u = UserRepository.GetUser(userName);
+            User u = UserRepository.GetUser(email);
             if(u != null && Hash.Validate(password, u.Password))
             {
                 return u;
             }
             return null;
         }
-        public User Register(string userName, string password)
+        public User Register(RegisterRequest request)
         {
-            if (UserRepository.CheckUsernameExists(userName)) return null;
-            User u = new User
-            {
-                UserName = userName,
-                Password = Hash.Hash(password)
-            };
+            if (UserRepository.CheckEmailExists(request.Email)) return null;
+            User u = Helpers.MapTo<User>(request);
+            u.Password = Hash.Hash(u.Password);
             UserRepository.Insert(u);
             return u;
         }

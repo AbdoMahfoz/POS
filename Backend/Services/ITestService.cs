@@ -1,4 +1,5 @@
-﻿using Backend.Security.Interfaces;
+﻿using Backend.DataContracts;
+using Backend.Security.Interfaces;
 using System.ServiceModel;
 
 namespace Backend.Services
@@ -8,5 +9,7 @@ namespace Backend.Services
     {
         [OperationContract]
         string DoWork();
+        [OperationContract]
+        RegisterRequest GetCurrentUser();
     }
 }
