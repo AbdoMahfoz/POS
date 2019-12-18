@@ -6,5 +6,9 @@ namespace MobileApp.PageModels
 {
     public class RegistrationPageModel : BasePageModel
     {
+        public RegistrationPageModel()
+        {
+            Title = "Registration Page";
+        }
     }
 }

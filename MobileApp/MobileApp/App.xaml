@@ -17,7 +17,10 @@
 
             <Color x:Key="fontGray">#727272</Color>
 
-            <Color x:Key="fontblue">#2b6785</Color>
+            <Color x:Key="fontMC">#028a9a</Color>
+
+            <Color x:Key="Pagebackground">#edecec</Color>
+
 
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
@@ -30,7 +33,7 @@
                 <Setter Property="ReturnType" Value="Next" />
                 <Setter Property="IsTextPredictionEnabled" Value="True" />
                 <Setter Property="FontSize" Value="Large" />
-                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="EntryBackgroundColor" Value="White" />
                 <Setter Property="BorderColor" Value="{StaticResource BorderGrey}" />
                 <Setter Property="BorderThickness" Value="2" />
                 <Setter Property="BorderRadius" Value="5" />
