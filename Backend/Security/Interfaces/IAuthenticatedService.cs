@@ -9,6 +9,6 @@ namespace Backend.Security.Interfaces
         [OperationContract]
         bool Login(string Email, string Password);
         [OperationContract]
-        bool Register(RegisterRequest request);
+        bool Register(UserDataRequest request);
     }
 }

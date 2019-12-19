@@ -8,8 +8,8 @@ namespace Backend.Services
     public interface ITestService : IAuthenticatedService
     {
         [OperationContract]
-        string DoWork();
+        string TestAuthentication();
         [OperationContract]
-        RegisterRequest GetCurrentUser();
+        UserDataResponse GetCurrentUser();
     }
 }

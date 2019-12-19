@@ -22,7 +22,7 @@ namespace Backend.Security.Implementations
             }
             return false;
         }
-        public bool Register(RegisterRequest request)
+        public bool Register(UserDataRequest request)
         {
             User u = Auth.Register(request);
             if (u != null)

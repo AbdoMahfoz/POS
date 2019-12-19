@@ -23,7 +23,7 @@ namespace Backend.Security.Implementations
             }
             return null;
         }
-        public User Register(RegisterRequest request)
+        public User Register(UserDataRequest request)
         {
             if (UserRepository.CheckEmailExists(request.Email)) return null;
             User u = Helpers.MapTo<User>(request);

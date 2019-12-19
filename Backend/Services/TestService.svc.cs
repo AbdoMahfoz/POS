@@ -9,18 +9,18 @@ namespace Backend.Services
     public class TestService : AuthenticatedService, ITestService
     {
         public TestService(IAuth Auth) : base(Auth) { }
-        public string DoWork()
+        public string TestAuthentication()
         {
             if(User == null)
             {
                 return "Unauthenticated";
             }
-            return User.Email;
+            return $"Authenticated as {User.Email}";
         }
-        public RegisterRequest GetCurrentUser()
+        public UserDataResponse GetCurrentUser()
         {
             if (User == null) return null;
-            return Helpers.MapTo<RegisterRequest>(User);
+            return Helpers.MapTo<UserDataResponse>(User);
         }
     }
 }

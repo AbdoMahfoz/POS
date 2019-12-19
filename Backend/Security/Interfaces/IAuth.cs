@@ -6,6 +6,6 @@ namespace Backend.Security.Interfaces
     public interface IAuth
     {
         User Login(string email, string password);
-        User Register(RegisterRequest request);
+        User Register(UserDataRequest request);
     }
 }
