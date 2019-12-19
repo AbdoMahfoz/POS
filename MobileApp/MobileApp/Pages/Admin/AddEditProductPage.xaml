@@ -8,11 +8,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10,5">
+            <Frame
+                Padding="0"
+                CornerRadius="150"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                IsClippedToBounds="True"
+                WidthRequest="250">
+                <Image
+                    HorizontalOptions="Center"
+                    Source="{Binding SelectedImage}"
+                    VerticalOptions="Center" />
+            </Frame>
+
             <Label
                 HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
+                Text="{Binding ImageName}"
+                VerticalOptions="CenterAndExpand">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button
+                Command="{Binding InsertNewItemCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="{Binding ButtonText}" />
         </StackLayout>
     </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>
