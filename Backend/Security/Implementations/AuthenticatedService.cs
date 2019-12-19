@@ -1,6 +1,7 @@
 ﻿using Backend.DataContracts;
 using Backend.Models;
 using Backend.Security.Interfaces;
+using System.ServiceModel;
 
 namespace Backend.Security.Implementations
 {
@@ -31,6 +32,11 @@ namespace Backend.Security.Implementations
                 return true;
             }
             return false;
+        }
+        public UserDataResponse GetUserInfo()
+        {
+            if (User == null) throw new FaultException("400 User not logged in");
+            return Helpers.MapTo<UserDataResponse>(User);
         }
     }
 }

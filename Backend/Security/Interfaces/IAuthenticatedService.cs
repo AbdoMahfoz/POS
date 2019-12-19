@@ -10,5 +10,7 @@ namespace Backend.Security.Interfaces
         bool Login(string Email, string Password);
         [OperationContract]
         bool Register(UserDataRequest request);
+        [OperationContract]
+        UserDataResponse GetUserInfo();
     }
 }

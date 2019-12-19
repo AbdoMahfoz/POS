@@ -15,12 +15,13 @@ namespace Backend
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<ITestService, TestService>().LifestyleTransient(),
+                Component.For<IUserService, UserService>().LifestyleTransient(),
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
                 Component.For<IAuth, Auth>().LifestyleTransient(),
                 Component.For<IHash, Hash>().LifestyleSingleton(),
                 Component.For(typeof(IRepository<>), typeof(Repository<>)).LifestyleTransient(),
-                Component.For<IUserRepository, UserRepository>().LifestyleTransient()
+                Component.For<IUserRepository, UserRepository>().LifestyleTransient(),
+                Component.For<IUserHistoryRepository, UserHistoryRepository>().LifestyleTransient()
             );
         }
     }

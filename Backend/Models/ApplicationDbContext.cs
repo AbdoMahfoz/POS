@@ -8,6 +8,8 @@ namespace Backend.Models
                                                 "AttachDbFilename=|DataDirectory|POSDb.mdf;" +
                                                 "Integrated Security=True";
         public DbSet<User> Users { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<UserHistory> UsersHistory { get; set; }
         public ApplicationDbContext() : base(ConnectionString) {}
     }
 }
