@@ -18,13 +18,17 @@ namespace MobileApp.PageModels.Admin
         public ImageSource SelectedImage { get; set; }
         public string ImageName { get; set; }
         public string ButtonText { get; set; }
+        public bool Visibility { get; set; }
+
         public AddEditProductPageModel()
         {
+            Title = "Manage Your Product";
             ImageName = "Click here to choose an image";
             ButtonText = "Add Item";
             PickPhotoCommand = new Command(PickPhotoExcute);
             InsertNewItemCommand = new Command(InsertNewItemExecute);
-            NewItem= new ShoppingItem();
+            NewItem = new ShoppingItem();
+            Visibility = false;
         }
 
         private void InsertNewItemExecute()
@@ -65,8 +69,10 @@ namespace MobileApp.PageModels.Admin
                         NewItem.Logo = Convert.ToBase64String(data);
                         var st = ImageName.Split('/');
                         ImageName = st[st.Length - 1];
+                        Visibility = true;
                         RaisePropertyChanged(nameof(ImageName));
                         RaisePropertyChanged(nameof(SelectedImage));
+                        RaisePropertyChanged(nameof(Visibility));
                     }
                 }
                 catch (Exception ex)
@@ -79,6 +85,5 @@ namespace MobileApp.PageModels.Admin
                 }
             });
         }
-
     }
 }

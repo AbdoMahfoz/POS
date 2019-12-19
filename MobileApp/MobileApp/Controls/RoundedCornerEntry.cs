@@ -26,12 +26,6 @@ namespace MobileApp.Controls
                 BindingMode.TwoWay,
                 propertyChanged: SetBehaviour);
 
-        public static readonly BindableProperty ReturnTypeProperty = BindableProperty.Create(
-            nameof(ReturnType),
-            typeof(ReturnType),
-            typeof(RoundedCornerEntry),
-            ReturnType.Done
-        );
 
         public bool DisplaySuggestions
         {
@@ -69,11 +63,6 @@ namespace MobileApp.Controls
             set => SetValue(EntryBackgroundColorProperty, value);
         }
 
-        public ReturnType ReturnType
-        {
-            get => (ReturnType) GetValue(ReturnTypeProperty);
-            set => SetValue(ReturnTypeProperty, value);
-        }
 
         private static void SetBehaviour(BindableObject bindable, object oldvalue, object newvalue)
         {

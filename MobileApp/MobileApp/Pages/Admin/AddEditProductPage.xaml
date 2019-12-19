@@ -6,34 +6,43 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
+    BackgroundColor="{StaticResource Pagebackground}"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout Margin="10,5">
-            <Frame
-                Padding="0"
-                CornerRadius="150"
-                HeightRequest="250"
-                HorizontalOptions="Center"
-                IsClippedToBounds="True"
-                WidthRequest="250">
-                <Image
+        <ScrollView>
+            <StackLayout Margin="10,5">
+                <Frame
+                    Padding="0"
+                    CornerRadius="150"
+                    HeightRequest="250"
                     HorizontalOptions="Center"
-                    Source="{Binding SelectedImage}"
-                    VerticalOptions="Center" />
-            </Frame>
+                    IsClippedToBounds="True"
+                    WidthRequest="250">
+                    <StackLayout>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            IsVisible="{Binding Visibility, Converter={StaticResource ImageLabelVisibilityConverter}}"
+                            Text="{Binding ImageName}"
+                            VerticalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image
+                            HorizontalOptions="Center"
+                            IsVisible="{Binding Visibility}"
+                            Source="{Binding SelectedImage}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
 
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding ImageName}"
-                VerticalOptions="CenterAndExpand">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-            <Button
-                Command="{Binding InsertNewItemCommand}"
-                Style="{StaticResource ButtonStyle}"
-                Text="{Binding ButtonText}" />
-        </StackLayout>
+                </Frame>
+
+                <Button
+                    Command="{Binding InsertNewItemCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="{Binding ButtonText}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>

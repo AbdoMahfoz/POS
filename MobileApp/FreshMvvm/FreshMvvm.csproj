@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>FreshMvvm</AssemblyName>
@@ -15,6 +15,7 @@
     <None Remove="backup-2019-01-17-093112\**" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.1" />
     <PackageReference Include="System.Reactive" Version="4.3.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
   </ItemGroup>
