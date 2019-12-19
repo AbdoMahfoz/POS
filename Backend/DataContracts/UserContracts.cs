@@ -3,12 +3,8 @@
 namespace Backend.DataContracts
 {
     [DataContract]
-    public enum PurchaseMethod { CreditCard, Cash }
-    [DataContract]
-    public class ItemResult
+    public class ItemRequest
     {
-        [DataMember]
-        public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]
@@ -19,5 +15,11 @@ namespace Backend.DataContracts
         public string Category { get; set; }
         [DataMember]
         public string Base64Image { get; set; }
+    }
+    [DataContract]
+    public class ItemResult : ItemRequest
+    {
+        [DataMember]
+        public int Id { get; set; }
     }
 }

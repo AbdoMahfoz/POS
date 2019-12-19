@@ -125,6 +125,10 @@
     <Compile Include="Security\Interfaces\IHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DependencyInjection.cs" />
+    <Compile Include="Services\AdminService.svc.cs">
+      <DependentUpon>AdminService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IAdminService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>
@@ -132,6 +136,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Services\AdminService.svc" />
     <Content Include="Services\UserService.svc" />
     <Content Include="Web.config" />
     <None Include="packages.config" />

@@ -22,6 +22,10 @@ namespace Backend.Repository
                    where !row.IsDeleted
                    select row;
         }
+        public virtual bool Exists(int id)
+        {
+            return GetAll().Where(e => e.Id == id).Any();
+        }
         public virtual T Get(int id)
         {
             var result = GetAll().Where(e => e.Id == id).FirstOrDefault();

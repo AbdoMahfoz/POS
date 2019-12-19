@@ -9,6 +9,7 @@ namespace Backend.Repository
     {
         IQueryable<T> GetAll();
         T Get(int id);
+        bool Exists(int id);
         Task Insert(T entity);
         Task InsertRange(IEnumerable<T> entities);
         void Update(T entity);

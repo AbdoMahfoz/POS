@@ -16,6 +16,7 @@ namespace Backend
         {
             container.Register(
                 Component.For<IUserService, UserService>().LifestyleTransient(),
+                Component.For<IAdminService, AdminService>().LifestyleTransient(),
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
                 Component.For<IAuth, Auth>().LifestyleTransient(),
                 Component.For<IHash, Hash>().LifestyleSingleton(),

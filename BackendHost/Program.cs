@@ -24,10 +24,14 @@ namespace BackendHost
                 container.Install(new DependencyInjection());
                 DefaultServiceHostFactory s = new DefaultServiceHostFactory(container.Kernel);
                 ServiceHostBase userHost = s.CreateServiceHost(typeof(UserService).AssemblyQualifiedName, new Uri[0]);
+                ServiceHostBase adminHost = s.CreateServiceHost(typeof(AdminService).AssemblyQualifiedName, new Uri[0]);
                 userHost.Open();
                 Console.WriteLine("UserService On");
+                adminHost.Open();
+                Console.WriteLine("AdminService On");
                 Console.ReadLine();
                 userHost.Close();
+                adminHost.Close();
             }
         }
     }

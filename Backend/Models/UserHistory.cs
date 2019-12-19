@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Models
 {
+    public enum PurchaseMethod { CreditCard, Cash }
     public class UserHistory : BaseModel
     {
         [Required]

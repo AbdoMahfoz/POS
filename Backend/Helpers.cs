@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Backend.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Backend
@@ -28,6 +31,20 @@ namespace Backend
                 }
             }
             return res;
+        }
+        public static void UpdateObject<T>(T oldobj, T newobj)
+        {
+            if (oldobj == null || newobj == null) throw new ArgumentNullException();
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+            {
+                bool Ignore = (from attrib in propertyInfo.CustomAttributes
+                               where attrib.AttributeType == typeof(IgnoreInHelpersAttribute)
+                               select attrib).Any();
+                if (!Ignore && propertyInfo.CanRead && propertyInfo.CanWrite)
+                {
+                    propertyInfo.SetValue(oldobj, propertyInfo.GetValue(newobj));
+                }
+            }
         }
     }
 }
