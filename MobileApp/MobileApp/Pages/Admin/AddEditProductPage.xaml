@@ -3,6 +3,7 @@
     x:Class="MobileApp.Pages.Admin.AddEditProductPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MobileApp.Controls;assembly=MobileApp"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,7 +12,7 @@
     mc:Ignorable="d">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="10,5">
+            <StackLayout Margin="20" Spacing="20">
                 <Frame
                     Padding="0"
                     BackgroundColor="White"
@@ -37,9 +38,26 @@
                             Source="{Binding SelectedImage}"
                             VerticalOptions="Center" />
                     </StackLayout>
-
                 </Frame>
 
+                <controls:RoundedCornerEntry
+                    Placeholder="Product Name"
+                    Style="{StaticResource LoginEntry}"
+                    Text="{Binding NewItem.Name}" />
+
+                <controls:RoundedCornerEntry
+                    Placeholder="Description"
+                    Style="{StaticResource LoginEntry}"
+                    Text="{Binding NewItem.Description}" />
+                <controls:RoundedCornerEntry
+                    Placeholder="Price"
+                    Style="{StaticResource LoginEntry}"
+                    Text="{Binding NewItem.Price}" />
+                <Picker
+                    Title="Item Category"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"
+                    TextColor="{StaticResource MainColor}" />
                 <Button
                     Command="{Binding InsertNewItemCommand}"
                     Style="{StaticResource ButtonStyle}"

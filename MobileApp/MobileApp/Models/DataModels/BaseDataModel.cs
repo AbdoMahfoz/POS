@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace MobileApp.Models.DataModels
 {
-    public class BaseDataModel
+    public class BaseDataModel : INotifyPropertyChanged
     {
         public int Id { get; set; }
         public DateTime AddedDate { get; set; }
