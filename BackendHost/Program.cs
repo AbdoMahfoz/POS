@@ -23,11 +23,11 @@ namespace BackendHost
                 container.AddFacility<WcfFacility>();
                 container.Install(new DependencyInjection());
                 DefaultServiceHostFactory s = new DefaultServiceHostFactory(container.Kernel);
-                ServiceHostBase host = s.CreateServiceHost(typeof(TestService).AssemblyQualifiedName, new Uri[0]);
-                host.Open();
-                Console.WriteLine("On");
+                ServiceHostBase userHost = s.CreateServiceHost(typeof(UserService).AssemblyQualifiedName, new Uri[0]);
+                userHost.Open();
+                Console.WriteLine("UserService On");
                 Console.ReadLine();
-                host.Close();
+                userHost.Close();
             }
         }
     }
