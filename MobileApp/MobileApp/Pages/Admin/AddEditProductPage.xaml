@@ -33,7 +33,11 @@
                             HorizontalOptions="Center"
                             IsVisible="{Binding Visibility}"
                             Source="{Binding SelectedImage}"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
 
                 </Frame>
