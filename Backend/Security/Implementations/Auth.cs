@@ -23,10 +23,11 @@ namespace Backend.Security.Implementations
             }
             return null;
         }
-        public User Register(UserDataRequest request)
+        public User Register(UserDataRequest request, bool IsAdmin = false)
         {
             if (UserRepository.CheckEmailExists(request.Email)) return null;
             User u = Helpers.MapTo<User>(request);
+            u.IsAdmin = IsAdmin;
             u.Password = Hash.Hash(u.Password);
             UserRepository.Insert(u);
             return u;

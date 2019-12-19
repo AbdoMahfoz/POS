@@ -1,7 +1,6 @@
 ﻿using Backend.Models;
 using System.Linq;
 using System.Threading.Tasks;
-using Backend.DataContracts;
 using System.ServiceModel;
 
 namespace Backend.Repository.ExtendedRepositories
@@ -10,6 +9,7 @@ namespace Backend.Repository.ExtendedRepositories
     {
         Task AddToCart(int UserId, int ItemId);
         void SetItemCountInCart(int UserId, int ItemId, int newCount);
+        void RemoveItemFromCart(int UserId, int ItemId);
         IQueryable<UserHistory> GetUserCart(int UserId);
         IQueryable<UserHistory> GetUserPurchases(int UserId);
         bool PerformPuchaseOnCart(int UserId, PurchaseMethod method);
@@ -61,6 +61,14 @@ namespace Backend.Repository.ExtendedRepositories
                 Update(item);
             }
             return !cartIsEmpty;
+        }
+        public void RemoveItemFromCart(int UserId, int ItemId)
+        {
+            UserHistory x = (from item in GetAll()
+                             where item.UserId == UserId && item.ItemId == ItemId
+                             select item).SingleOrDefault();
+            if (x == null) throw new FaultException($"400 User doesn't have an item with id {ItemId} in the cart");
+            SoftDelete(x);
         }
         public void SetItemCountInCart(int UserId, int ItemId, int newCount)
         {

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Backend.DataContracts
 {
@@ -12,7 +13,7 @@ namespace Backend.DataContracts
         [DataMember]
         public string Price { get; set; }
         [DataMember]
-        public string Category { get; set; }
+        public string[] Categories { get; set; }
         [DataMember]
         public string Base64Image { get; set; }
     }
@@ -21,5 +22,7 @@ namespace Backend.DataContracts
     {
         [DataMember]
         public int Id { get; set; }
+        public DateTime AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
 }

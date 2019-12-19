@@ -107,12 +107,24 @@
     <Compile Include="Migrations\201912190232298_UserServiceModels.designer.cs">
       <DependentUpon>201912190232298_UserServiceModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912192054196_Category.cs" />
+    <Compile Include="Migrations\201912192054196_Category.designer.cs">
+      <DependentUpon>201912192054196_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912192250484_MinorChanges.cs" />
+    <Compile Include="Migrations\201912192250484_MinorChanges.designer.cs">
+      <DependentUpon>201912192250484_MinorChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemCategory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserHistory.cs" />
+    <Compile Include="Repository\ExtendedRepositories\CategoryRepository.cs" />
+    <Compile Include="Repository\ExtendedRepositories\ItemCategoryRepository.cs" />
     <Compile Include="Repository\ExtendedRepositories\UserHistoryRepository.cs" />
     <Compile Include="Repository\ExtendedRepositories\UserRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
@@ -153,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912190232298_UserServiceModels.resx">
       <DependentUpon>201912190232298_UserServiceModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912192054196_Category.resx">
+      <DependentUpon>201912192054196_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912192250484_MinorChanges.resx">
+      <DependentUpon>201912192250484_MinorChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,7 @@ namespace Backend.Security.Implementations
         {
             this.Auth = Auth;
         }
-        public bool Login(string Email, string Password)
+        public virtual bool Login(string Email, string Password)
         {
             User u = Auth.Login(Email, Password);
             if(u != null)
@@ -23,9 +23,13 @@ namespace Backend.Security.Implementations
             }
             return false;
         }
-        public bool Register(UserDataRequest request)
+        public virtual bool Register(UserDataRequest request)
         {
-            User u = Auth.Register(request);
+            return Register(request);
+        }
+        public virtual bool Register(UserDataRequest request, bool IsAdmin = false)
+        {
+            User u = Auth.Register(request, IsAdmin);
             if (u != null)
             {
                 User = u;
@@ -33,10 +37,22 @@ namespace Backend.Security.Implementations
             }
             return false;
         }
-        public UserDataResponse GetUserInfo()
+        public virtual UserDataResponse GetUserInfo()
         {
             if (User == null) throw new FaultException("400 User not logged in");
             return Helpers.MapTo<UserDataResponse>(User);
+        }
+        protected void AssertAuthentication(bool MustBeAdmin = false)
+        {
+            if (User == null || (MustBeAdmin && !User.IsAdmin))
+            {
+                User = null;
+                throw new FaultException("401 Unauthorized");
+            }
+        }
+        public void Logout()
+        {
+            User = null;
         }
     }
 }

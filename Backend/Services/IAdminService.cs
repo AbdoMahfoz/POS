@@ -14,6 +14,14 @@ namespace Backend.Services
         [OperationContract]
         void DeleteItem(int ItemId);
         [OperationContract]
+        void AddItemToCategory(int ItemId, string Category);
+        [OperationContract]
+        void RemoveItemCateogry(int ItemId, string Category);
+        [OperationContract]
         ItemResult[] GetItems();
+        [OperationContract]
+        string[] GetCategories();
+        [OperationContract]
+        void AddCategory(string newCategory);
     }
 }

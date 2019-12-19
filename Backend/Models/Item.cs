@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Backend.Models
 {
@@ -8,8 +9,8 @@ namespace Backend.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Price { get; set; }
-        public string Category { get; set; }
         public string Base64Image { get; set; }
         public int Stock { get; set; } = 1;
+        public virtual IList<ItemCategory> Categories { get; set; }
     }
 }

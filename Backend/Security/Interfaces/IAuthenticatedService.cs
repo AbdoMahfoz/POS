@@ -11,6 +11,8 @@ namespace Backend.Security.Interfaces
         [OperationContract]
         bool Register(UserDataRequest request);
         [OperationContract]
+        void Logout();
+        [OperationContract]
         UserDataResponse GetUserInfo();
     }
 }

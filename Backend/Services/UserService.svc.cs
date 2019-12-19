@@ -19,10 +19,6 @@ namespace Backend.Services
             this.UserHistoryRepository = UserHistoryRepository;
             this.ItemRepository = ItemRepository;
         }
-        private void AssertAuthentication()
-        {
-            if (User == null) throw new FaultException("401 Unauthorized");
-        }
         public void AddToCart(int ItemId)
         {
             AssertAuthentication();
@@ -56,6 +52,11 @@ namespace Backend.Services
         {
             AssertAuthentication();
             UserHistoryRepository.SetItemCountInCart(User.Id, ItemId, newCount);
+        }
+        public void DeleteItemFromCart(int ItemId)
+        {
+            AssertAuthentication();
+            UserHistoryRepository.RemoveItemFromCart(User.Id, ItemId);
         }
     }
 }

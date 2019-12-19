@@ -14,6 +14,8 @@ namespace Backend.Services
         [OperationContract]
         void SetItemCountInCart(int ItemId, int newCount);
         [OperationContract]
+        void DeleteItemFromCart(int ItemId);
+        [OperationContract]
         ItemResult[] GetCart();
         [OperationContract]
         bool PurchaseCart(bool IsCreditCard, int? pin = null);
