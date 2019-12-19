@@ -14,30 +14,28 @@
             <StackLayout Margin="10,5">
                 <Frame
                     Padding="0"
+                    BackgroundColor="White"
+                    BorderColor="{StaticResource MainColor}"
                     CornerRadius="150"
+                    HasShadow="True"
                     HeightRequest="250"
                     HorizontalOptions="Center"
                     IsClippedToBounds="True"
                     WidthRequest="250">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                    </Frame.GestureRecognizers>
                     <StackLayout>
                         <Label
                             HorizontalOptions="CenterAndExpand"
                             IsVisible="{Binding Visibility, Converter={StaticResource ImageLabelVisibilityConverter}}"
                             Text="{Binding ImageName}"
-                            VerticalOptions="CenterAndExpand">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                            VerticalOptions="CenterAndExpand" />
                         <Image
                             HorizontalOptions="Center"
                             IsVisible="{Binding Visibility}"
                             Source="{Binding SelectedImage}"
-                            VerticalOptions="Center">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                            VerticalOptions="Center" />
                     </StackLayout>
 
                 </Frame>
