@@ -10,23 +10,23 @@
 namespace UserService
 {
     using System.Runtime.Serialization;
-    
-    
+
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserDataResponse", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "UserDataResponse", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(UserService.UserDataRequest))]
     public partial class UserDataResponse : object
     {
-        
+
         private string AddressField;
-        
+
         private string AreaField;
-        
+
         private string EmailField;
-        
+
         private string NameField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address
         {
@@ -39,7 +39,7 @@ namespace UserService
                 this.AddressField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Area
         {
@@ -52,7 +52,7 @@ namespace UserService
                 this.AreaField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Email
         {
@@ -65,7 +65,7 @@ namespace UserService
                 this.EmailField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name
         {
@@ -79,15 +79,15 @@ namespace UserService
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserDataRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "UserDataRequest", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class UserDataRequest : UserService.UserDataResponse
     {
-        
+
         private string PasswordField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password
         {
@@ -101,15 +101,15 @@ namespace UserService
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "ItemResult", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class ItemResult : UserService.ItemRequest
     {
-        
+
         private int IdField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id
         {
@@ -123,24 +123,24 @@ namespace UserService
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name = "ItemRequest", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(UserService.ItemResult))]
     public partial class ItemRequest : object
     {
-        
+
         private string Base64ImageField;
-        
+
         private string[] CategoriesField;
-        
+
         private string DescriptionField;
-        
+
         private string NameField;
-        
+
         private string PriceField;
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Base64Image
         {
@@ -153,7 +153,7 @@ namespace UserService
                 this.Base64ImageField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string[] Categories
         {
@@ -166,7 +166,7 @@ namespace UserService
                 this.CategoriesField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Description
         {
@@ -179,7 +179,7 @@ namespace UserService
                 this.DescriptionField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name
         {
@@ -192,7 +192,7 @@ namespace UserService
                 this.NameField = value;
             }
         }
-        
+
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Price
         {
@@ -206,177 +206,177 @@ namespace UserService
             }
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "UserService.IUserService")]
     public interface IUserService
     {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Login", ReplyAction="http://tempuri.org/IAuthenticatedService/LoginResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Login", ReplyAction = "http://tempuri.org/IAuthenticatedService/LoginResponse")]
         System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Register", ReplyAction="http://tempuri.org/IAuthenticatedService/RegisterResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Register", ReplyAction = "http://tempuri.org/IAuthenticatedService/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(UserService.UserDataRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Logout", ReplyAction="http://tempuri.org/IAuthenticatedService/LogoutResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Logout", ReplyAction = "http://tempuri.org/IAuthenticatedService/LogoutResponse")]
         System.Threading.Tasks.Task LogoutAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/GetUserInfo", ReplyAction="http://tempuri.org/IAuthenticatedService/GetUserInfoResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/GetUserInfo", ReplyAction = "http://tempuri.org/IAuthenticatedService/GetUserInfoResponse")]
         System.Threading.Tasks.Task<UserService.UserDataResponse> GetUserInfoAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetItems", ReplyAction = "http://tempuri.org/IItemService/GetItemsResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetCategories", ReplyAction = "http://tempuri.org/IItemService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction = "http://tempuri.org/IItemService/GetItemsInCategryResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/IUserService/AddToCart")]
         System.Threading.Tasks.Task AddToCartAsync(int ItemId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SetItemCountInCart", ReplyAction="http://tempuri.org/IUserService/SetItemCountInCartResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/SetItemCountInCart", ReplyAction = "http://tempuri.org/IUserService/SetItemCountInCartResponse")]
         System.Threading.Tasks.Task SetItemCountInCartAsync(int ItemId, int newCount);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteItemFromCart", ReplyAction="http://tempuri.org/IUserService/DeleteItemFromCartResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/DeleteItemFromCart", ReplyAction = "http://tempuri.org/IUserService/DeleteItemFromCartResponse")]
         System.Threading.Tasks.Task DeleteItemFromCartAsync(int ItemId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetCart", ReplyAction="http://tempuri.org/IUserService/GetCartResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/GetCart", ReplyAction = "http://tempuri.org/IUserService/GetCartResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/PurchaseCart", ReplyAction="http://tempuri.org/IUserService/PurchaseCartResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/PurchaseCart", ReplyAction = "http://tempuri.org/IUserService/PurchaseCartResponse")]
         System.Threading.Tasks.Task<bool> PurchaseCartAsync(bool IsCreditCard, System.Nullable<int> pin);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPurchaseHistory", ReplyAction="http://tempuri.org/IUserService/GetPurchaseHistoryResponse")]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/GetPurchaseHistory", ReplyAction = "http://tempuri.org/IUserService/GetPurchaseHistoryResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetPurchaseHistoryAsync();
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     public interface IUserServiceChannel : UserService.IUserService, System.ServiceModel.IClientChannel
     {
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     public partial class UserServiceClient : System.ServiceModel.ClientBase<UserService.IUserService>, UserService.IUserService
     {
-        
+
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
         /// </summary>
         /// <param name="serviceEndpoint">The endpoint to configure</param>
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-        
-        public UserServiceClient() : 
+
+        public UserServiceClient() :
                 base(UserServiceClient.GetDefaultBinding(), UserServiceClient.GetDefaultEndpointAddress())
         {
             this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_IUserService.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public UserServiceClient(EndpointConfiguration endpointConfiguration) : 
+
+        public UserServiceClient(EndpointConfiguration endpointConfiguration) :
                 base(UserServiceClient.GetBindingForEndpoint(endpointConfiguration), UserServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public UserServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+
+        public UserServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) :
                 base(UserServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public UserServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public UserServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(UserServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public UserServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public UserServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(binding, remoteAddress)
         {
         }
-        
+
         public System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password)
         {
             return base.Channel.LoginAsync(Email, Password);
         }
-        
+
         public System.Threading.Tasks.Task<bool> RegisterAsync(UserService.UserDataRequest request)
         {
             return base.Channel.RegisterAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task LogoutAsync()
         {
             return base.Channel.LogoutAsync();
         }
-        
+
         public System.Threading.Tasks.Task<UserService.UserDataResponse> GetUserInfoAsync()
         {
             return base.Channel.GetUserInfoAsync();
         }
-        
+
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsAsync()
         {
             return base.Channel.GetItemsAsync();
         }
-        
+
         public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
         {
             return base.Channel.GetCategoriesAsync();
         }
-        
+
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category)
         {
             return base.Channel.GetItemsInCategryAsync(Category);
         }
-        
+
         public System.Threading.Tasks.Task AddToCartAsync(int ItemId)
         {
             return base.Channel.AddToCartAsync(ItemId);
         }
-        
+
         public System.Threading.Tasks.Task SetItemCountInCartAsync(int ItemId, int newCount)
         {
             return base.Channel.SetItemCountInCartAsync(ItemId, newCount);
         }
-        
+
         public System.Threading.Tasks.Task DeleteItemFromCartAsync(int ItemId)
         {
             return base.Channel.DeleteItemFromCartAsync(ItemId);
         }
-        
+
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync()
         {
             return base.Channel.GetCartAsync();
         }
-        
+
         public System.Threading.Tasks.Task<bool> PurchaseCartAsync(bool IsCreditCard, System.Nullable<int> pin)
         {
             return base.Channel.PurchaseCartAsync(IsCreditCard, pin);
         }
-        
+
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetPurchaseHistoryAsync()
         {
             return base.Channel.GetPurchaseHistoryAsync();
         }
-        
+
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
-        
+
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
-        
+
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IUserService))
@@ -390,7 +390,7 @@ namespace UserService
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IUserService))
@@ -399,20 +399,20 @@ namespace UserService
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
             return UserServiceClient.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_IUserService);
         }
-        
+
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
             return UserServiceClient.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_IUserService);
         }
-        
+
         public enum EndpointConfiguration
         {
-            
+
             NetTcpBinding_IUserService,
         }
     }

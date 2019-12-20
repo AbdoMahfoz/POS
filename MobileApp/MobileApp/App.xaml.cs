@@ -1,11 +1,17 @@
-﻿using FreshMvvm;
+﻿using AdminService;
+using FreshMvvm;
+using MobileApp.PageModels;
 using MobileApp.PageModels.Admin;
+using UserService;
 using Xamarin.Forms;
 
 namespace MobileApp
 {
     public partial class App : Application
     {
+        public static bool IsAdmin { get; set; }
+        public static UserServiceClient UserBackendClient { get; set; } = new UserServiceClient();
+        public static AdminServiceClient AdminBackendClient { get; set; } = new AdminServiceClient();
         public App()
         {
             InitializeComponent();

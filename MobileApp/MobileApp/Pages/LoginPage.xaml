@@ -15,11 +15,23 @@
         <ScrollView>
             <StackLayout Margin="20,75" Spacing="25">
                 <Label
-                    Margin="0,0,0,75"
+                    Margin="0,0,0,50"
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
                     Style="{StaticResource LabelStyle}"
                     Text="E commerce App" />
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="Is Admin?"
+                        TextColor="Black" />
+                    <CheckBox
+                        HorizontalOptions="Center"
+                        IsChecked="{Binding IsAdmin}"
+                        VerticalOptions="Center"
+                        Color="{StaticResource MainColor}" />
+                </StackLayout>
                 <controls:RoundedCornerEntry
                     IsEmail="True"
                     Placeholder="Email"
@@ -30,6 +42,7 @@
                     Placeholder="Password"
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding Password}" />
+
                 <Button
                     Command="{Binding NavigateToLogin}"
                     Style="{StaticResource ButtonStyle}"

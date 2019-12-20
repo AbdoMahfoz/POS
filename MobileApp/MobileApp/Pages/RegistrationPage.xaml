@@ -16,17 +16,17 @@
                 <controls:RoundedCornerEntry
                     Placeholder="Name"
                     Style="{StaticResource LoginEntry}"
-                    Text="{Binding Name}" />
+                    Text="{Binding Account.Name}" />
                 <controls:RoundedCornerEntry
                     IsEmail="True"
                     Placeholder="Email"
                     Style="{StaticResource LoginEntry}"
-                    Text="{Binding Email}" />
+                    Text="{Binding Account.Email}" />
                 <controls:RoundedCornerEntry
                     IsPassword="True"
                     Placeholder="Password"
                     Style="{StaticResource LoginEntry}"
-                    Text="{Binding Password}" />
+                    Text="{Binding Account.Password}" />
                 <controls:RoundedCornerEntry
                     IsPassword="True"
                     Placeholder="Confirm Password"
@@ -35,14 +35,24 @@
                 <controls:RoundedCornerEntry
                     Placeholder="Address"
                     Style="{StaticResource LoginEntry}"
-                    Text="{Binding Address}" />
+                    Text="{Binding Account.Address}" />
                 <controls:RoundedCornerEntry
                     Placeholder="Address"
                     Style="{StaticResource LoginEntry}"
-                    Text="{Binding Area}" />
+                    Text="{Binding Account.Area}" />
+                <!--<StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="Large"
+                        Text="Is Admin?"
+                        TextColor="{StaticResource MainColor}" />
+                    <CheckBox
+                        HorizontalOptions="Center"
+                        IsChecked="{Binding IsAdmin}"
+                        VerticalOptions="Center" />
+                </StackLayout>-->
                 <Button
                     Margin="0,30"
-                    Command="{Binding NavigateToLogin}"
+                    Command="{Binding RegisterCommand}"
                     Style="{StaticResource ButtonStyle}"
                     Text="Sign Me Up" />
             </StackLayout>

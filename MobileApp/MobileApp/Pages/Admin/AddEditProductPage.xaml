@@ -55,6 +55,7 @@
                     Text="{Binding NewItem.Price}" />
                 <Picker
                     Title="Item Category"
+                    FontSize="Large"
                     ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding SelectedCategory}"
