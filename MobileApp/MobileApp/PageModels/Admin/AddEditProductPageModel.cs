@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using Acr.UserDialogs;
 using MobileApp.Models.DataModels;
@@ -19,6 +20,8 @@ namespace MobileApp.PageModels.Admin
         public string ImageName { get; set; }
         public string ButtonText { get; set; }
         public bool Visibility { get; set; }
+        ObservableCollection<Category> Categories { get; set; }
+        Category SelectedCategory { get; set; }
 
         public AddEditProductPageModel()
         {
@@ -28,7 +31,17 @@ namespace MobileApp.PageModels.Admin
             PickPhotoCommand = new Command(PickPhotoExcute);
             InsertNewItemCommand = new Command(InsertNewItemExecute);
             NewItem = new ShoppingItem();
+            Categories = new ObservableCollection<Category>();
+            SelectedCategory = new Category();
             Visibility = false;
+        }
+
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+            Categories.Add(new Category(){Id = 1,Name = "Food"});
+            Categories.Add(new Category(){Id = 2,Name = "Water"});
+            Categories.Add(new Category(){Id = 3,Name = "Air"});
         }
 
         private void InsertNewItemExecute()
@@ -70,9 +83,6 @@ namespace MobileApp.PageModels.Admin
                         var st = ImageName.Split('/');
                         ImageName = st[st.Length - 1];
                         Visibility = true;
-                        RaisePropertyChanged(nameof(ImageName));
-                        RaisePropertyChanged(nameof(SelectedImage));
-                        RaisePropertyChanged(nameof(Visibility));
                     }
                 }
                 catch (Exception ex)
