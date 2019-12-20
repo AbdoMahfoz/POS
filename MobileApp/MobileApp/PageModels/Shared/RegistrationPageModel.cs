@@ -7,7 +7,7 @@ using MobileApp.PageModels.Admin;
 using UserService;
 using Xamarin.Forms;
 
-namespace MobileApp.PageModels
+namespace MobileApp.PageModels.Shared
 {
     public class RegistrationPageModel : BasePageModel
     {

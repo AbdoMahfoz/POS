@@ -32,15 +32,17 @@
     <EmbeddedResource Update="Pages\Admin\AddEditProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\LoginPage.xaml">
+    <EmbeddedResource Update="Pages\Shared\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\RegistrationPage.xaml">
+    <EmbeddedResource Update="Pages\Shared\RegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="PageModels\User\" />
+    <Folder Include="Pages\User\" />
     <Folder Include="Reusable Views\" />
   </ItemGroup>
 </Project>

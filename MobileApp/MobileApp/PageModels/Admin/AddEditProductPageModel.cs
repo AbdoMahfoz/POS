@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using AdminService;
@@ -17,16 +16,6 @@ namespace MobileApp.PageModels.Admin
 {
     public class AddEditProductPageModel : BasePageModel
     {
-        public ShoppingItem NewItem { get; set; }
-        public Command PickPhotoCommand { get; set; }
-        public Command InsertNewItemCommand { get; set; }
-        public ImageSource SelectedImage { get; set; }
-        public string ButtonText { get; set; }
-        public bool Visibility { get; set; }
-        public bool IsEdit { get; set; }
-        public List<Category> Categories { get; set; }
-        public Category SelectedCategory { get; set; }
-
         public AddEditProductPageModel()
         {
             PickPhotoCommand = new Command(PickPhotoExcute);
@@ -38,6 +27,16 @@ namespace MobileApp.PageModels.Admin
                 new Category {Id = 3, Name = "Air"}
             };
         }
+
+        public ShoppingItem NewItem { get; set; }
+        public Command PickPhotoCommand { get; set; }
+        public Command InsertNewItemCommand { get; set; }
+        public ImageSource SelectedImage { get; set; }
+        public string ButtonText { get; set; }
+        public bool Visibility { get; set; }
+        public bool IsEdit { get; set; }
+        public List<Category> Categories { get; set; }
+        public Category SelectedCategory { get; set; }
 
         private async Task CommandExecute()
         {
@@ -64,13 +63,13 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                App.AdminBackendClient.InsertItemAsync(new AdminService.ItemRequest()
+                App.AdminBackendClient.InsertItemAsync(new ItemRequest
                 {
                     Name = NewItem.Name,
                     Base64Image = NewItem.Logo,
                     Description = NewItem.Description,
                     Price = NewItem.Description,
-                    Categories = new[] { NewItem.ItemCategory.Name }
+                    Categories = new[] {NewItem.ItemCategory.Name}
                 });
                 return Task.FromResult(true);
             }
@@ -92,14 +91,14 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                App.AdminBackendClient.UpdateItemAsync(new AdminService.ItemResult()
+                App.AdminBackendClient.UpdateItemAsync(new ItemResult
                 {
                     Id = NewItem.Id,
                     Name = NewItem.Name,
                     Base64Image = NewItem.Logo,
                     Description = NewItem.Description,
                     Price = NewItem.Description,
-                    Categories = new[] { NewItem.ItemCategory.Name }
+                    Categories = new[] {NewItem.ItemCategory.Name}
                 });
                 return Task.FromResult(true);
             }
@@ -134,7 +133,7 @@ namespace MobileApp.PageModels.Admin
                 IsEdit = true;
                 Title = "Edit a Product";
                 ButtonText = "Edit Item";
-                var item = (ShoppingItem)initData;
+                var item = (ShoppingItem) initData;
                 NewItem = item;
                 SelectedCategory = item.ItemCategory;
                 Visibility = true;

@@ -4,7 +4,8 @@ using Acr.UserDialogs;
 using MobileApp.PageModels.Admin;
 using Xamarin.Forms;
 
-namespace MobileApp.PageModels
+namespace MobileApp.PageModels.Shared
+
 {
     public class LoginPageModel : BasePageModel
     {
