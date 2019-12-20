@@ -105,16 +105,37 @@ namespace UserService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
-    public partial class ItemResult : object
+    public partial class ItemResult : UserService.ItemRequest
+    {
+        
+        private int IdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(UserService.ItemResult))]
+    public partial class ItemRequest : object
     {
         
         private string Base64ImageField;
         
-        private string CategoryField;
+        private string[] CategoriesField;
         
         private string DescriptionField;
-        
-        private int IdField;
         
         private string NameField;
         
@@ -134,15 +155,15 @@ namespace UserService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category
+        public string[] Categories
         {
             get
             {
-                return this.CategoryField;
+                return this.CategoriesField;
             }
             set
             {
-                this.CategoryField = value;
+                this.CategoriesField = value;
             }
         }
         
@@ -156,19 +177,6 @@ namespace UserService
             set
             {
                 this.DescriptionField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id
-        {
-            get
-            {
-                return this.IdField;
-            }
-            set
-            {
-                this.IdField = value;
             }
         }
         
@@ -210,17 +218,29 @@ namespace UserService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Register", ReplyAction="http://tempuri.org/IAuthenticatedService/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(UserService.UserDataRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Logout", ReplyAction="http://tempuri.org/IAuthenticatedService/LogoutResponse")]
+        System.Threading.Tasks.Task LogoutAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/GetUserInfo", ReplyAction="http://tempuri.org/IAuthenticatedService/GetUserInfoResponse")]
         System.Threading.Tasks.Task<UserService.UserDataResponse> GetUserInfoAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetItems", ReplyAction="http://tempuri.org/IUserService/GetItemsResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
+        System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+        System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
         System.Threading.Tasks.Task AddToCartAsync(int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SetItemCountInCart", ReplyAction="http://tempuri.org/IUserService/SetItemCountInCartResponse")]
         System.Threading.Tasks.Task SetItemCountInCartAsync(int ItemId, int newCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteItemFromCart", ReplyAction="http://tempuri.org/IUserService/DeleteItemFromCartResponse")]
+        System.Threading.Tasks.Task DeleteItemFromCartAsync(int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetCart", ReplyAction="http://tempuri.org/IUserService/GetCartResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync();
@@ -292,6 +312,11 @@ namespace UserService
             return base.Channel.RegisterAsync(request);
         }
         
+        public System.Threading.Tasks.Task LogoutAsync()
+        {
+            return base.Channel.LogoutAsync();
+        }
+        
         public System.Threading.Tasks.Task<UserService.UserDataResponse> GetUserInfoAsync()
         {
             return base.Channel.GetUserInfoAsync();
@@ -302,6 +327,16 @@ namespace UserService
             return base.Channel.GetItemsAsync();
         }
         
+        public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
+        {
+            return base.Channel.GetCategoriesAsync();
+        }
+        
+        public System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category)
+        {
+            return base.Channel.GetItemsInCategryAsync(Category);
+        }
+        
         public System.Threading.Tasks.Task AddToCartAsync(int ItemId)
         {
             return base.Channel.AddToCartAsync(ItemId);
@@ -310,6 +345,11 @@ namespace UserService
         public System.Threading.Tasks.Task SetItemCountInCartAsync(int ItemId, int newCount)
         {
             return base.Channel.SetItemCountInCartAsync(ItemId, newCount);
+        }
+        
+        public System.Threading.Tasks.Task DeleteItemFromCartAsync(int ItemId)
+        {
+            return base.Channel.DeleteItemFromCartAsync(ItemId);
         }
         
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync()

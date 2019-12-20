@@ -145,7 +145,6 @@
     <Compile Include="Services\UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Shared\IItemService.cs" />
     <Compile Include="Shared\ItemService.cs" />
   </ItemGroup>
   <ItemGroup />

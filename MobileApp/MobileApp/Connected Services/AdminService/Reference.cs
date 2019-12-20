@@ -104,6 +104,28 @@ namespace AdminService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    public partial class ItemResult : AdminService.ItemRequest
+    {
+        
+        private int IdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AdminService.ItemResult))]
     public partial class ItemRequest : object
@@ -111,7 +133,7 @@ namespace AdminService
         
         private string Base64ImageField;
         
-        private string CategoryField;
+        private string[] CategoriesField;
         
         private string DescriptionField;
         
@@ -133,15 +155,15 @@ namespace AdminService
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category
+        public string[] Categories
         {
             get
             {
-                return this.CategoryField;
+                return this.CategoriesField;
             }
             set
             {
-                this.CategoryField = value;
+                this.CategoriesField = value;
             }
         }
         
@@ -185,28 +207,6 @@ namespace AdminService
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
-    public partial class ItemResult : AdminService.ItemRequest
-    {
-        
-        private int IdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id
-        {
-            get
-            {
-                return this.IdField;
-            }
-            set
-            {
-                this.IdField = value;
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdminService.IAdminService")]
     public interface IAdminService
@@ -218,8 +218,20 @@ namespace AdminService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Register", ReplyAction="http://tempuri.org/IAuthenticatedService/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(AdminService.UserDataRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/Logout", ReplyAction="http://tempuri.org/IAuthenticatedService/LogoutResponse")]
+        System.Threading.Tasks.Task LogoutAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticatedService/GetUserInfo", ReplyAction="http://tempuri.org/IAuthenticatedService/GetUserInfoResponse")]
         System.Threading.Tasks.Task<AdminService.UserDataResponse> GetUserInfoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
+        System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
+        System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+        System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/InsertItem", ReplyAction="http://tempuri.org/IAdminService/InsertItemResponse")]
         System.Threading.Tasks.Task InsertItemAsync(AdminService.ItemRequest item);
@@ -230,8 +242,14 @@ namespace AdminService
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteItem", ReplyAction="http://tempuri.org/IAdminService/DeleteItemResponse")]
         System.Threading.Tasks.Task DeleteItemAsync(int ItemId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetItems", ReplyAction="http://tempuri.org/IAdminService/GetItemsResponse")]
-        System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddItemToCategory", ReplyAction="http://tempuri.org/IAdminService/AddItemToCategoryResponse")]
+        System.Threading.Tasks.Task AddItemToCategoryAsync(int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/RemoveItemCateogry", ReplyAction="http://tempuri.org/IAdminService/RemoveItemCateogryResponse")]
+        System.Threading.Tasks.Task RemoveItemCateogryAsync(int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddCategory", ReplyAction="http://tempuri.org/IAdminService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(string newCategory);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
@@ -294,9 +312,29 @@ namespace AdminService
             return base.Channel.RegisterAsync(request);
         }
         
+        public System.Threading.Tasks.Task LogoutAsync()
+        {
+            return base.Channel.LogoutAsync();
+        }
+        
         public System.Threading.Tasks.Task<AdminService.UserDataResponse> GetUserInfoAsync()
         {
             return base.Channel.GetUserInfoAsync();
+        }
+        
+        public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync()
+        {
+            return base.Channel.GetItemsAsync();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
+        {
+            return base.Channel.GetCategoriesAsync();
+        }
+        
+        public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category)
+        {
+            return base.Channel.GetItemsInCategryAsync(Category);
         }
         
         public System.Threading.Tasks.Task InsertItemAsync(AdminService.ItemRequest item)
@@ -314,9 +352,19 @@ namespace AdminService
             return base.Channel.DeleteItemAsync(ItemId);
         }
         
-        public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync()
+        public System.Threading.Tasks.Task AddItemToCategoryAsync(int ItemId, string Category)
         {
-            return base.Channel.GetItemsAsync();
+            return base.Channel.AddItemToCategoryAsync(ItemId, Category);
+        }
+        
+        public System.Threading.Tasks.Task RemoveItemCateogryAsync(int ItemId, string Category)
+        {
+            return base.Channel.RemoveItemCateogryAsync(ItemId, Category);
+        }
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(string newCategory)
+        {
+            return base.Channel.AddCategoryAsync(newCategory);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
