@@ -30,7 +30,7 @@
                         <Label
                             HorizontalOptions="CenterAndExpand"
                             IsVisible="{Binding Visibility, Converter={StaticResource ImageLabelVisibilityConverter}}"
-                            Text="{Binding ImageName}"
+                            Text="Click here to choose an image"
                             VerticalOptions="CenterAndExpand" />
                         <Image
                             HorizontalOptions="Center"
@@ -55,6 +55,7 @@
                     Text="{Binding NewItem.Price}" />
                 <Picker
                     Title="Item Category"
+                    ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding SelectedCategory}"
                     TextColor="{StaticResource MainColor}" />
