@@ -1,14 +1,13 @@
 ﻿using Backend.DataContracts;
 using Backend.Security.Interfaces;
+using Backend.Shared;
 using System.ServiceModel;
 
 namespace Backend.Services
 {
     [ServiceContract(SessionMode = SessionMode.Required)]
-    public interface IUserService : IAuthenticatedService
+    public interface IUserService : IAuthenticatedService, IItemService
     {
-        [OperationContract]
-        ItemResult[] GetItems();
         [OperationContract(IsOneWay = true)]
         void AddToCart(int ItemId);
         [OperationContract]

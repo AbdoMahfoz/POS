@@ -4,6 +4,7 @@ using Backend.Repository;
 using Backend.Repository.ExtendedRepositories;
 using Backend.Security.Implementations;
 using Backend.Security.Interfaces;
+using Backend.Shared;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -16,12 +17,14 @@ namespace Backend.Services
         private readonly IRepository<Item> ItemRepository;
         private readonly IItemCategoryRepository ItemCategoryRepository;
         private readonly ICategoryRepository CategoryRepository;
-        public AdminService(IRepository<Item> ItemRepository, IAuth Auth, 
+        private readonly IItemService ItemService;
+        public AdminService(IRepository<Item> ItemRepository, IAuth Auth, IItemService ItemService,
             IItemCategoryRepository ItemCategoryRepository, ICategoryRepository CategoryRepository) : base(Auth) 
         {
             this.ItemRepository = ItemRepository;
             this.ItemCategoryRepository = ItemCategoryRepository;
             this.CategoryRepository = CategoryRepository;
+            this.ItemService = ItemService;
         }
         public override bool Login(string Email, string Password)
         {
@@ -53,23 +56,6 @@ namespace Backend.Services
             Item item = ItemRepository.Get(ItemId);
             if (item == null) throw new FaultException($"400 Id {ItemId} doesn't exist");
             ItemRepository.SoftDelete(item);
-        }
-        public string[] GetCategories()
-        {
-            AssertAuthentication(true);
-            return CategoryRepository.GetAll().Select(x => x.Name).ToArray();
-        }
-        public ItemResult[] GetItems()
-        {
-            AssertAuthentication(true);
-            return ItemRepository.GetAll().ToArray()
-                                          .Select(u => 
-                                          {
-                                              ItemResult res = Helpers.MapTo<ItemResult>(u);
-                                              res.Categories = u.Categories.Select(x => x.Category.Name).ToArray();
-                                              return res;
-                                          })
-                                          .ToArray();
         }
         public void InsertItem(ItemRequest item)
         {
@@ -106,6 +92,21 @@ namespace Backend.Services
             }
             Helpers.UpdateObject(res, Helpers.MapTo<Item>(item));
             ItemRepository.Update(res);
+        }
+        public ItemResult[] GetItems()
+        {
+            AssertAuthentication(true);
+            return ItemService.GetItems();
+        }
+        public string[] GetCategories()
+        {
+            AssertAuthentication(true);
+            return ItemService.GetCategories();
+        }
+        public ItemResult[] GetItemsInCategry(string Category)
+        {
+            AssertAuthentication(true);
+            return ItemService.GetItemsInCategry(Category);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Backend.DataContracts;
 using Backend.Security.Interfaces;
+using Backend.Shared;
 using System.ServiceModel;
 
 namespace Backend.Services
 {
     [ServiceContract(SessionMode = SessionMode.Required)]
-    public interface IAdminService : IAuthenticatedService
+    public interface IAdminService : IAuthenticatedService, IItemService
     {
         [OperationContract]
         void InsertItem(ItemRequest item);
@@ -17,10 +18,6 @@ namespace Backend.Services
         void AddItemToCategory(int ItemId, string Category);
         [OperationContract]
         void RemoveItemCateogry(int ItemId, string Category);
-        [OperationContract]
-        ItemResult[] GetItems();
-        [OperationContract]
-        string[] GetCategories();
         [OperationContract]
         void AddCategory(string newCategory);
     }

@@ -8,6 +8,7 @@ using Backend.Security.Implementations;
 using Backend.Services;
 using Backend.Repository.ExtendedRepositories;
 using System.Linq;
+using Backend.Shared;
 
 namespace Backend
 {
@@ -18,6 +19,8 @@ namespace Backend
             container.Register(
                 Component.For<IUserService, UserService>().LifestyleTransient(),
                 Component.For<IAdminService, AdminService>().LifestyleTransient(),
+                Component.For<IItemService, ItemService>().LifestyleTransient(),
+                Component.For<IAuthenticatedService, AuthenticatedService>().LifestyleTransient(),
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
                 Component.For<IAuth, Auth>().LifestyleTransient(),
                 Component.For<IHash, RFCHash>().LifestyleSingleton(),

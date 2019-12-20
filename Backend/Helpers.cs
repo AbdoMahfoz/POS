@@ -1,4 +1,5 @@
-﻿using Backend.Models;
+﻿using Backend.DataContracts;
+using Backend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,12 @@ namespace Backend
                     propertyInfo.SetValue(oldobj, propertyInfo.GetValue(newobj));
                 }
             }
+        }
+        public static ItemResult ToItemResult(this Item item)
+        {
+            ItemResult res = MapTo<ItemResult>(item);
+            res.Categories = item.Categories.Select(x => x.Category.Name).ToArray();
+            return res;
         }
     }
 }

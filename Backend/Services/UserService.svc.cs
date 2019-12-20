@@ -4,8 +4,8 @@ using Backend.DataContracts;
 using Backend.Repository.ExtendedRepositories;
 using Backend.Security.Implementations;
 using Backend.Security.Interfaces;
-using Backend.Repository;
 using Backend.Models;
+using Backend.Shared;
 
 namespace Backend.Services
 {
@@ -13,11 +13,11 @@ namespace Backend.Services
     public class UserService : AuthenticatedService, IUserService
     {
         private readonly IUserHistoryRepository UserHistoryRepository;
-        private readonly IRepository<Item> ItemRepository;
-        public UserService(IUserHistoryRepository UserHistoryRepository, IRepository<Item> ItemRepository, IAuth Auth) : base(Auth)
+        private readonly IItemService ItemService;
+        public UserService(IUserHistoryRepository UserHistoryRepository, IAuth Auth, IItemService ItemService) : base(Auth)
         {
             this.UserHistoryRepository = UserHistoryRepository;
-            this.ItemRepository = ItemRepository;
+            this.ItemService = ItemService;
         }
         public void AddToCart(int ItemId)
         {
@@ -28,19 +28,13 @@ namespace Backend.Services
         {
             AssertAuthentication();
             return UserHistoryRepository.GetUserCart(User.Id).Select(u => u.Item).ToArray()
-                                                             .Select(u => Helpers.MapTo<ItemResult>(u)).ToArray();
-        }
-        public ItemResult[] GetItems()
-        {
-            AssertAuthentication();
-            return ItemRepository.GetAll().ToArray()
-                                          .Select(u => Helpers.MapTo<ItemResult>(u)).ToArray();
+                                                             .Select(u => u.ToItemResult()).ToArray();
         }
         public ItemResult[] GetPurchaseHistory()
         {
             AssertAuthentication();
             return UserHistoryRepository.GetUserPurchases(User.Id).Select(u => u.Item).ToArray()
-                                                                  .Select(u => Helpers.MapTo<ItemResult>(u)).ToArray();
+                                                                  .Select(u => u.ToItemResult()).ToArray();
         }
         public bool PurchaseCart(bool IsCreditCard, int? pin = null)
         {
@@ -57,6 +51,21 @@ namespace Backend.Services
         {
             AssertAuthentication();
             UserHistoryRepository.RemoveItemFromCart(User.Id, ItemId);
+        }
+        public ItemResult[] GetItems()
+        {
+            AssertAuthentication();
+            return ItemService.GetItems();
+        }
+        public string[] GetCategories()
+        {
+            AssertAuthentication();
+            return ItemService.GetCategories();
+        }
+        public ItemResult[] GetItemsInCategry(string Category)
+        {
+            AssertAuthentication();
+            return ItemService.GetItemsInCategry(Category);
         }
     }
 }
