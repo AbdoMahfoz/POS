@@ -25,6 +25,9 @@ namespace BackendHost
                 DefaultServiceHostFactory s = new DefaultServiceHostFactory(container.Kernel);
                 ServiceHostBase userHost = s.CreateServiceHost(typeof(UserService).AssemblyQualifiedName, new Uri[0]);
                 ServiceHostBase adminHost = s.CreateServiceHost(typeof(AdminService).AssemblyQualifiedName, new Uri[0]);
+                ServiceHostBase authHost = s.CreateServiceHost(typeof(AuthenticationService).AssemblyQualifiedName, new Uri[0]);
+                authHost.Open();
+                Console.WriteLine("AuthenticationService On");
                 userHost.Open();
                 Console.WriteLine("UserService On");
                 adminHost.Open();

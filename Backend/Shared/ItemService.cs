@@ -7,7 +7,7 @@ using Backend.Repository.ExtendedRepositories;
 
 namespace Backend.Shared
 {
-    [ServiceContract(SessionMode = SessionMode.Required)]
+    [ServiceContract]
     public interface IItemService
     {
         [OperationContract]
@@ -17,6 +17,7 @@ namespace Backend.Shared
         [OperationContract]
         ItemResult[] GetItemsInCategry(string Category);
     }
+    [ServiceBehavior]
     public class ItemService : IItemService
     {
         private readonly ICategoryRepository CategoryRepository;

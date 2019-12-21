@@ -2,7 +2,6 @@
 using Backend.Models;
 using Backend.Repository;
 using Backend.Repository.ExtendedRepositories;
-using Backend.Security.Implementations;
 using Backend.Security.Interfaces;
 using Backend.Shared;
 using System.Collections.Generic;
@@ -11,55 +10,41 @@ using System.ServiceModel;
 
 namespace Backend.Services
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
-    public class AdminService : AuthenticatedService, IAdminService
+    [ServiceBehavior]
+    public class AdminService : ItemService, IAdminService
     {
         private readonly IRepository<Item> ItemRepository;
         private readonly IItemCategoryRepository ItemCategoryRepository;
         private readonly ICategoryRepository CategoryRepository;
-        private readonly IItemService ItemService;
-        public AdminService(IRepository<Item> ItemRepository, IAuth Auth, IItemService ItemService,
-            IItemCategoryRepository ItemCategoryRepository, ICategoryRepository CategoryRepository) : base(Auth) 
+        private readonly IAuth Auth;
+        public AdminService(IRepository<Item> ItemRepository, IAuth Auth, IItemCategoryRepository ItemCategoryRepository,
+                            ICategoryRepository CategoryRepository) :base(CategoryRepository, ItemRepository) 
         {
             this.ItemRepository = ItemRepository;
             this.ItemCategoryRepository = ItemCategoryRepository;
             this.CategoryRepository = CategoryRepository;
-            this.ItemService = ItemService;
+            this.Auth = Auth;
         }
-        public override bool Login(string Email, string Password)
+        public void AddCategory(string token, string newCategory)
         {
-            bool res = base.Login(Email, Password);
-            if(res)
-            {
-                AssertAuthentication(true);
-            }
-            return res;
-        }
-        public override bool Register(UserDataRequest request)
-        {
-            AssertAuthentication(true);
-            return Register(request, true);
-        }
-        public void AddCategory(string newCategory)
-        {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             CategoryRepository.Insert(new Category { Name = newCategory }).Wait();
         }
-        public void AddItemToCategory(int ItemId, string Category)
+        public void AddItemToCategory(string token, int ItemId, string Category)
         {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             ItemCategoryRepository.AddItemToCateogry(ItemId, Category);
         }
-        public void DeleteItem(int ItemId)
+        public void DeleteItem(string token, int ItemId)
         {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             Item item = ItemRepository.Get(ItemId);
             if (item == null) throw new FaultException($"400 Id {ItemId} doesn't exist");
             ItemRepository.SoftDelete(item);
         }
-        public void InsertItem(ItemRequest item)
+        public void InsertItem(string token, ItemRequest item)
         {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             Item x = Helpers.MapTo<Item>(item);
             ItemRepository.Insert(x).Wait();
             foreach(string category in item.Categories)
@@ -67,14 +52,14 @@ namespace Backend.Services
                 ItemCategoryRepository.AddItemToCateogry(x.Id, category);
             }
         }
-        public void RemoveItemCateogry(int ItemId, string Category)
+        public void RemoveItemCateogry(string token, int ItemId, string Category)
         {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             ItemCategoryRepository.RemoveItemFromCategory(ItemId, Category);
         }
-        public void UpdateItem(ItemResult item)
+        public void UpdateItem(string token, ItemResult item)
         {
-            AssertAuthentication(true);
+            Auth.EnsureAuthorizedAsAdmin(token);
             Item res = ItemRepository.Get(item.Id);
             if (res == null) throw new FaultException($"400 Id {item.Id} doesn't exist");
             IEnumerable<string> ExisitingCategories = res.Categories.Select(x => x.Category.Name);
@@ -92,21 +77,6 @@ namespace Backend.Services
             }
             Helpers.UpdateObject(res, Helpers.MapTo<Item>(item));
             ItemRepository.Update(res);
-        }
-        public ItemResult[] GetItems()
-        {
-            AssertAuthentication(true);
-            return ItemService.GetItems();
-        }
-        public string[] GetCategories()
-        {
-            AssertAuthentication(true);
-            return ItemService.GetCategories();
-        }
-        public ItemResult[] GetItemsInCategry(string Category)
-        {
-            AssertAuthentication(true);
-            return ItemService.GetItemsInCategry(Category);
         }
     }
 }

@@ -19,11 +19,12 @@ namespace Backend
             container.Register(
                 Component.For<IUserService, UserService>().LifestyleTransient(),
                 Component.For<IAdminService, AdminService>().LifestyleTransient(),
+                Component.For<IAuthenticationService, AuthenticationService>().LifestyleTransient(),
                 Component.For<IItemService, ItemService>().LifestyleTransient(),
-                Component.For<IAuthenticatedService, AuthenticatedService>().LifestyleTransient(),
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
                 Component.For<IAuth, Auth>().LifestyleTransient(),
                 Component.For<IHash, RFCHash>().LifestyleSingleton(),
+                Component.For<ITokenizer, ITokenizer>().LifestyleSingleton(),
                 Component.For(typeof(IRepository<>), typeof(Repository<>)).LifestyleTransient(),
                 Component.For<IUserRepository, UserRepository>().LifestyleTransient(),
                 Component.For<IUserHistoryRepository, UserHistoryRepository>().LifestyleTransient(),
