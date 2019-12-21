@@ -37,7 +37,7 @@
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding Account.Address}" />
                 <controls:RoundedCornerEntry
-                    Placeholder="Address"
+                    Placeholder="Area"
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding Account.Area}" />
                 <!--<StackLayout Orientation="Horizontal">
