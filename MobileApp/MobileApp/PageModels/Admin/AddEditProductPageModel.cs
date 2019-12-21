@@ -31,6 +31,10 @@ namespace MobileApp.PageModels.Admin
         public ShoppingItem NewItem { get; set; }
         public Command PickPhotoCommand { get; set; }
         public Command InsertNewItemCommand { get; set; }
+        public Command CloseCommand
+        {
+            get { return new Command(async () => { await CoreMethods.PopPageModel(null, true); }); }
+        }
         public ImageSource SelectedImage { get; set; }
         public string ButtonText { get; set; }
         public bool Visibility { get; set; }

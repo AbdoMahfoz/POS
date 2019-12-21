@@ -9,6 +9,12 @@
     Title="{Binding Title}"
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
+    <freshMvvm:FreshBaseContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding OpenAddModalCommand}"
+            IconImageSource="plus.png"
+            IsEnabled="{Binding IsAdmin}" />
+    </freshMvvm:FreshBaseContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <CollectionView

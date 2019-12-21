@@ -10,7 +10,10 @@
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <freshMvvm:FreshBaseContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="plus.png" Command="{Binding OpenAddModalCommand}" />
+        <ToolbarItem
+            Command="{Binding OpenAddModalCommand}"
+            IconImageSource="plus.png"
+            IsEnabled="{Binding IsAdmin}" />
     </freshMvvm:FreshBaseContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10">

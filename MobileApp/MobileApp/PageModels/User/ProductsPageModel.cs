@@ -3,11 +3,21 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MobileApp.Models.DataModels;
+using MobileApp.PageModels.Admin;
+using Xamarin.Forms;
 
 namespace MobileApp.PageModels.User
 {
     public class ProductsPageModel : BasePageModel
     {
+        public bool IsAdmin => App.IsAdmin;
+        public Command OpenAddModalCommand
+        {
+            get
+            {
+                return new Command(async () => { await CoreMethods.PushPageModel<AddEditProductPageModel>(null, true); });
+            }
+        }
         public ProductsPageModel()
         {
             Title = "Products";

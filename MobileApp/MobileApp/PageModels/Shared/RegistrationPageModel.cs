@@ -14,6 +14,7 @@ namespace MobileApp.PageModels.Shared
         public RegistrationPageModel()
         {
             Title = "Registration Page";
+            Account = new Account();
             RegisterCommand = new Command(async () => await RegisterExecute());
         }
 
@@ -23,9 +24,9 @@ namespace MobileApp.PageModels.Shared
 
         private async Task RegisterExecute()
         {
-            if (!IsAccountValid()) return;
-            if (await RegisterAccount())
-                await CoreMethods.PushPageModel<AddEditProductPageModel>();
+            //if (!IsAccountValid()) return;
+            //if (await RegisterAccount())
+            //    await CoreMethods.PushPageModel<AddEditProductPageModel>();
         }
 
         private Task<bool> RegisterAccount()

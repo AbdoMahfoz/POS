@@ -45,9 +45,7 @@ namespace MobileApp.PageModels.Shared
         {
             var masterDetailNav = new FreshMasterDetailNavigationContainer();
             masterDetailNav.Init("Hello", "Menu.png");
-            masterDetailNav.AddPage<AddEditProductPageModel>("Manage Your Products");
             masterDetailNav.AddPage<CategoriesPageModel>("Categories");
-            masterDetailNav.AddPage<AddCategoryPageModel>("Add Categories");
             masterDetailNav.AddPage<ProductsPageModel>("Products");
             Application.Current.MainPage = masterDetailNav;
         }
