@@ -10,106 +10,16 @@
 namespace AdminService
 {
     using System.Runtime.Serialization;
-
-
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "UserDataResponse", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(AdminService.UserDataRequest))]
-    public partial class UserDataResponse : object
-    {
-
-        private string AddressField;
-
-        private string AreaField;
-
-        private string EmailField;
-
-        private string NameField;
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address
-        {
-            get
-            {
-                return this.AddressField;
-            }
-            set
-            {
-                this.AddressField = value;
-            }
-        }
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Area
-        {
-            get
-            {
-                return this.AreaField;
-            }
-            set
-            {
-                this.AreaField = value;
-            }
-        }
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Email
-        {
-            get
-            {
-                return this.EmailField;
-            }
-            set
-            {
-                this.EmailField = value;
-            }
-        }
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.NameField;
-            }
-            set
-            {
-                this.NameField = value;
-            }
-        }
-    }
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "UserDataRequest", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
-    public partial class UserDataRequest : AdminService.UserDataResponse
-    {
-
-        private string PasswordField;
-
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password
-        {
-            get
-            {
-                return this.PasswordField;
-            }
-            set
-            {
-                this.PasswordField = value;
-            }
-        }
-    }
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "ItemResult", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class ItemResult : AdminService.ItemRequest
     {
-
+        
         private int IdField;
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id
         {
@@ -123,24 +33,24 @@ namespace AdminService
             }
         }
     }
-
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.Runtime.Serialization.DataContractAttribute(Name = "ItemRequest", Namespace = "http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AdminService.ItemResult))]
     public partial class ItemRequest : object
     {
-
+        
         private string Base64ImageField;
-
+        
         private string[] CategoriesField;
-
+        
         private string DescriptionField;
-
+        
         private string NameField;
-
+        
         private string PriceField;
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Base64Image
         {
@@ -153,7 +63,7 @@ namespace AdminService
                 this.Base64ImageField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string[] Categories
         {
@@ -166,7 +76,7 @@ namespace AdminService
                 this.CategoriesField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Description
         {
@@ -179,7 +89,7 @@ namespace AdminService
                 this.DescriptionField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name
         {
@@ -192,7 +102,7 @@ namespace AdminService
                 this.NameField = value;
             }
         }
-
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Price
         {
@@ -206,214 +116,182 @@ namespace AdminService
             }
         }
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "AdminService.IAdminService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdminService.IAdminService")]
     public interface IAdminService
     {
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Login", ReplyAction = "http://tempuri.org/IAuthenticatedService/LoginResponse")]
-        System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Register", ReplyAction = "http://tempuri.org/IAuthenticatedService/RegisterResponse")]
-        System.Threading.Tasks.Task<bool> RegisterAsync(AdminService.UserDataRequest request);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/Logout", ReplyAction = "http://tempuri.org/IAuthenticatedService/LogoutResponse")]
-        System.Threading.Tasks.Task LogoutAsync();
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticatedService/GetUserInfo", ReplyAction = "http://tempuri.org/IAuthenticatedService/GetUserInfoResponse")]
-        System.Threading.Tasks.Task<AdminService.UserDataResponse> GetUserInfoAsync();
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetItems", ReplyAction = "http://tempuri.org/IItemService/GetItemsResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
         System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync();
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetCategories", ReplyAction = "http://tempuri.org/IItemService/GetCategoriesResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction = "http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
         System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/InsertItem", ReplyAction = "http://tempuri.org/IAdminService/InsertItemResponse")]
-        System.Threading.Tasks.Task InsertItemAsync(AdminService.ItemRequest item);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/UpdateItem", ReplyAction = "http://tempuri.org/IAdminService/UpdateItemResponse")]
-        System.Threading.Tasks.Task UpdateItemAsync(AdminService.ItemResult item);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/DeleteItem", ReplyAction = "http://tempuri.org/IAdminService/DeleteItemResponse")]
-        System.Threading.Tasks.Task DeleteItemAsync(int ItemId);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/AddItemToCategory", ReplyAction = "http://tempuri.org/IAdminService/AddItemToCategoryResponse")]
-        System.Threading.Tasks.Task AddItemToCategoryAsync(int ItemId, string Category);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/RemoveItemCateogry", ReplyAction = "http://tempuri.org/IAdminService/RemoveItemCateogryResponse")]
-        System.Threading.Tasks.Task RemoveItemCateogryAsync(int ItemId, string Category);
-
-        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAdminService/AddCategory", ReplyAction = "http://tempuri.org/IAdminService/AddCategoryResponse")]
-        System.Threading.Tasks.Task AddCategoryAsync(string newCategory);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/InsertItem", ReplyAction="http://tempuri.org/IAdminService/InsertItemResponse")]
+        System.Threading.Tasks.Task InsertItemAsync(string token, AdminService.ItemRequest item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateItem", ReplyAction="http://tempuri.org/IAdminService/UpdateItemResponse")]
+        System.Threading.Tasks.Task UpdateItemAsync(string token, AdminService.ItemResult item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteItem", ReplyAction="http://tempuri.org/IAdminService/DeleteItemResponse")]
+        System.Threading.Tasks.Task DeleteItemAsync(string token, int ItemId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddItemToCategory", ReplyAction="http://tempuri.org/IAdminService/AddItemToCategoryResponse")]
+        System.Threading.Tasks.Task AddItemToCategoryAsync(string token, int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/RemoveItemCateogry", ReplyAction="http://tempuri.org/IAdminService/RemoveItemCateogryResponse")]
+        System.Threading.Tasks.Task RemoveItemCateogryAsync(string token, int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddCategory", ReplyAction="http://tempuri.org/IAdminService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(string token, string newCategory);
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     public interface IAdminServiceChannel : AdminService.IAdminService, System.ServiceModel.IClientChannel
     {
     }
-
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
     public partial class AdminServiceClient : System.ServiceModel.ClientBase<AdminService.IAdminService>, AdminService.IAdminService
     {
-
+        
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
         /// </summary>
         /// <param name="serviceEndpoint">The endpoint to configure</param>
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-
-        public AdminServiceClient() :
+        
+        public AdminServiceClient() : 
                 base(AdminServiceClient.GetDefaultBinding(), AdminServiceClient.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.NetTcpBinding_IAdminService.ToString();
+            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IAdminService.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-
-        public AdminServiceClient(EndpointConfiguration endpointConfiguration) :
+        
+        public AdminServiceClient(EndpointConfiguration endpointConfiguration) : 
                 base(AdminServiceClient.GetBindingForEndpoint(endpointConfiguration), AdminServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-
-        public AdminServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) :
+        
+        public AdminServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
                 base(AdminServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-
-        public AdminServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) :
+        
+        public AdminServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(AdminServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-
-        public AdminServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
+        
+        public AdminServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
-
-        public System.Threading.Tasks.Task<bool> LoginAsync(string Email, string Password)
-        {
-            return base.Channel.LoginAsync(Email, Password);
-        }
-
-        public System.Threading.Tasks.Task<bool> RegisterAsync(AdminService.UserDataRequest request)
-        {
-            return base.Channel.RegisterAsync(request);
-        }
-
-        public System.Threading.Tasks.Task LogoutAsync()
-        {
-            return base.Channel.LogoutAsync();
-        }
-
-        public System.Threading.Tasks.Task<AdminService.UserDataResponse> GetUserInfoAsync()
-        {
-            return base.Channel.GetUserInfoAsync();
-        }
-
+        
         public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync()
         {
             return base.Channel.GetItemsAsync();
         }
-
+        
         public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
         {
             return base.Channel.GetCategoriesAsync();
         }
-
+        
         public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category)
         {
             return base.Channel.GetItemsInCategryAsync(Category);
         }
-
-        public System.Threading.Tasks.Task InsertItemAsync(AdminService.ItemRequest item)
+        
+        public System.Threading.Tasks.Task InsertItemAsync(string token, AdminService.ItemRequest item)
         {
-            return base.Channel.InsertItemAsync(item);
+            return base.Channel.InsertItemAsync(token, item);
         }
-
-        public System.Threading.Tasks.Task UpdateItemAsync(AdminService.ItemResult item)
+        
+        public System.Threading.Tasks.Task UpdateItemAsync(string token, AdminService.ItemResult item)
         {
-            return base.Channel.UpdateItemAsync(item);
+            return base.Channel.UpdateItemAsync(token, item);
         }
-
-        public System.Threading.Tasks.Task DeleteItemAsync(int ItemId)
+        
+        public System.Threading.Tasks.Task DeleteItemAsync(string token, int ItemId)
         {
-            return base.Channel.DeleteItemAsync(ItemId);
+            return base.Channel.DeleteItemAsync(token, ItemId);
         }
-
-        public System.Threading.Tasks.Task AddItemToCategoryAsync(int ItemId, string Category)
+        
+        public System.Threading.Tasks.Task AddItemToCategoryAsync(string token, int ItemId, string Category)
         {
-            return base.Channel.AddItemToCategoryAsync(ItemId, Category);
+            return base.Channel.AddItemToCategoryAsync(token, ItemId, Category);
         }
-
-        public System.Threading.Tasks.Task RemoveItemCateogryAsync(int ItemId, string Category)
+        
+        public System.Threading.Tasks.Task RemoveItemCateogryAsync(string token, int ItemId, string Category)
         {
-            return base.Channel.RemoveItemCateogryAsync(ItemId, Category);
+            return base.Channel.RemoveItemCateogryAsync(token, ItemId, Category);
         }
-
-        public System.Threading.Tasks.Task AddCategoryAsync(string newCategory)
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(string token, string newCategory)
         {
-            return base.Channel.AddCategoryAsync(newCategory);
+            return base.Channel.AddCategoryAsync(token, newCategory);
         }
-
+        
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
-
+        
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
-
+        
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IAdminService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IAdminService))
             {
-                System.ServiceModel.NetTcpBinding result = new System.ServiceModel.NetTcpBinding();
+                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
-                result.Security.Mode = System.ServiceModel.SecurityMode.None;
+                result.AllowCookies = true;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-
+        
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.NetTcpBinding_IAdminService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IAdminService))
             {
-                return new System.ServiceModel.EndpointAddress("net.tcp://localhost:8091/");
+                return new System.ServiceModel.EndpointAddress("http://0.0.0.0:8081/svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-
+        
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return AdminServiceClient.GetBindingForEndpoint(EndpointConfiguration.NetTcpBinding_IAdminService);
+            return AdminServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IAdminService);
         }
-
+        
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return AdminServiceClient.GetEndpointAddress(EndpointConfiguration.NetTcpBinding_IAdminService);
+            return AdminServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IAdminService);
         }
-
+        
         public enum EndpointConfiguration
         {
-
-            NetTcpBinding_IAdminService,
+            
+            BasicHttpBinding_IAdminService,
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using AdminService;
+using AuthenticationService;
 using FreshMvvm;
 using MobileApp.PageModels.Shared;
+using System.ServiceModel;
 using UserService;
 using Xamarin.Forms;
 
@@ -16,8 +18,12 @@ namespace MobileApp
         }
 
         public static bool IsAdmin { get; set; }
+        public static string Token { get; set; }
         public static UserServiceClient UserBackendClient { get; set; } = new UserServiceClient();
         public static AdminServiceClient AdminBackendClient { get; set; } = new AdminServiceClient();
+        public static AuthenticationServiceClient AuthenticationClient { get; set; } =
+            new AuthenticationServiceClient(AuthenticationServiceClient.EndpointConfiguration.BasicHttpBinding_IAuthenticationService, 
+                                            new EndpointAddress("http://192.168.1.199:8082/"));
 
         public void LoadBasicNav()
         {

@@ -50,22 +50,22 @@ namespace MobileApp.PageModels.Shared
             Application.Current.MainPage = masterDetailNav;
         }
 
-        private Task<bool> Login()
+        private async Task<bool> Login()
         {
             UserDialogs.Instance.ShowLoading();
             try
             {
-                if (App.IsAdmin)
-                    return App.AdminBackendClient.LoginAsync(Email, Password);
-                else
-                    return App.UserBackendClient.LoginAsync(Email, Password);
+                string token = await App.AuthenticationClient.LoginAsync(Email, Password);
+                if (token == null) return false;
+                App.Token = token;
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 //UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert(e.Message, "Error");
-                return Task.FromResult(false);
+                return false;
             }
             finally
             {

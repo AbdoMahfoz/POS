@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using AuthenticationService;
 using MobileApp.Helpers;
 using MobileApp.Models.DataModels;
 using MobileApp.PageModels.Admin;
@@ -29,12 +30,12 @@ namespace MobileApp.PageModels.Shared
             //    await CoreMethods.PushPageModel<AddEditProductPageModel>();
         }
 
-        private Task<bool> RegisterAccount()
+        private async Task<bool> RegisterAccount()
         {
             UserDialogs.Instance.ShowLoading();
             try
             {
-                return App.UserBackendClient.RegisterAsync(new UserDataRequest
+                string token = await App.AuthenticationClient.RegisterAsync(new UserDataRequest
                 {
                     Address = Account.Address,
                     Area = Account.Area,
@@ -42,13 +43,16 @@ namespace MobileApp.PageModels.Shared
                     Name = Account.Name,
                     Password = Account.Password
                 });
+                if (token == null) return false;
+                App.Token = token;
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 //UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert(e.Message, "Error");
-                return Task.FromResult(false);
+                return false;
             }
             finally
             {

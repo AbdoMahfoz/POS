@@ -67,7 +67,7 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                await App.AdminBackendClient.InsertItemAsync(new ItemRequest
+                await App.AdminBackendClient.InsertItemAsync(App.Token, new ItemRequest
                 {
                     Name = NewItem.Name,
                     Base64Image = NewItem.Logo,
@@ -95,7 +95,7 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                await App.AdminBackendClient.UpdateItemAsync(new ItemResult
+                await App.AdminBackendClient.UpdateItemAsync(App.Token, new ItemResult
                 {
                     Id = NewItem.Id,
                     Name = NewItem.Name,
