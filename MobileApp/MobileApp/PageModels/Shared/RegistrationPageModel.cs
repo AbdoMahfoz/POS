@@ -43,7 +43,7 @@ namespace MobileApp.PageModels.Shared
                     Name = Account.Name,
                     Password = Account.Password
                 });
-                if (token == null) return false;
+                if (string.IsNullOrWhiteSpace(token)) return false;
                 App.Token = token;
                 return true;
             }

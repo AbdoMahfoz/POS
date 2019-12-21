@@ -22,8 +22,8 @@ namespace MobileApp
         public static UserServiceClient UserBackendClient { get; set; } = new UserServiceClient();
         public static AdminServiceClient AdminBackendClient { get; set; } = new AdminServiceClient();
         public static AuthenticationServiceClient AuthenticationClient { get; set; } =
-            new AuthenticationServiceClient(AuthenticationServiceClient.EndpointConfiguration.BasicHttpBinding_IAuthenticationService, 
-                                            new EndpointAddress("http://192.168.1.199:8082/"));
+            new AuthenticationServiceClient(AuthenticationServiceClient.EndpointConfiguration.BasicHttpBinding_IAuthenticationService,
+                                            new EndpointAddress("http://10.0.2.2:8082/svc"));
 
         public void LoadBasicNav()
         {

@@ -36,9 +36,9 @@ namespace MobileApp.PageModels.Shared
 
         private async Task LoginExecute()
         {
-            //if (!IsLoginDataValid()) return;
-            //if (await Login()) 
-            LoadMasterDetail();
+            if (!IsLoginDataValid()) return;
+            if (await Login())
+                LoadMasterDetail();
         }
 
         public void LoadMasterDetail()
@@ -56,7 +56,7 @@ namespace MobileApp.PageModels.Shared
             try
             {
                 string token = await App.AuthenticationClient.LoginAsync(Email, Password);
-                if (token == null) return false;
+                if (string.IsNullOrWhiteSpace(token)) return false;
                 App.Token = token;
                 return true;
             }

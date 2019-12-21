@@ -20,7 +20,7 @@
                     HorizontalOptions="Center"
                     Style="{StaticResource LabelStyle}"
                     Text="E commerce App" />
-                <StackLayout Orientation="Horizontal">
+                <!--<StackLayout Orientation="Horizontal">
                     <Label
                         FontAttributes="Bold"
                         FontSize="Large"
@@ -31,7 +31,7 @@
                         IsChecked="{Binding IsAdmin}"
                         VerticalOptions="Center"
                         Color="{StaticResource MainColor}" />
-                </StackLayout>
+                </StackLayout>-->
                 <controls:RoundedCornerEntry
                     IsEmail="True"
                     Placeholder="Email"

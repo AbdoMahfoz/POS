@@ -24,7 +24,7 @@ namespace Backend
                 Component.For<ApplicationDbContext>().LifestyleTransient(),
                 Component.For<IAuth, Auth>().LifestyleTransient(),
                 Component.For<IHash, RFCHash>().LifestyleSingleton(),
-                Component.For<ITokenizer, ITokenizer>().LifestyleSingleton(),
+                Component.For<ITokenizer, JWTTokenizer>().LifestyleSingleton(),
                 Component.For(typeof(IRepository<>), typeof(Repository<>)).LifestyleTransient(),
                 Component.For<IUserRepository, UserRepository>().LifestyleTransient(),
                 Component.For<IUserHistoryRepository, UserHistoryRepository>().LifestyleTransient(),
@@ -32,7 +32,7 @@ namespace Backend
                 Component.For<ICategoryRepository, CategoryRepository>().LifestyleTransient()
             );
             IUserRepository users = container.Resolve<IUserRepository>();
-            if(!users.GetAll().Where(u => u.IsAdmin).Any())
+            if (!users.GetAll().Where(u => u.IsAdmin).Any())
             {
                 users.Insert(new User
                 {
