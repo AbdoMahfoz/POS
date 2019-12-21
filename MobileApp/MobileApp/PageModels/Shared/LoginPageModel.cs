@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using FreshMvvm;
 using MobileApp.PageModels.Admin;
+using MobileApp.PageModels.User;
+using MobileApp.Pages.User;
 using Xamarin.Forms;
 
 namespace MobileApp.PageModels.Shared
@@ -33,8 +36,17 @@ namespace MobileApp.PageModels.Shared
         private async Task LoginExecute()
         {
             if (!IsLoginDataValid()) return;
-            if (await Login())
-                await CoreMethods.PushPageModel<AddEditProductPageModel>();
+            //if (await Login()) 
+            LoadMasterDetail();
+        }
+        public void LoadMasterDetail()
+        {
+            var masterDetailNav = new FreshMasterDetailNavigationContainer();
+            masterDetailNav.Init("Hello", "Menu.png");
+            masterDetailNav.AddPage<AddEditProductPageModel>("Manage Your Products", null);
+            masterDetailNav.AddPage<CategoriesPageModel>("Categories", null);
+            masterDetailNav.AddPage<ProductsPageModel>("Products", null);
+            Application.Current.MainPage = masterDetailNav;
         }
 
         private Task<bool> Login()

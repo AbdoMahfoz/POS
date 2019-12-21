@@ -2,6 +2,7 @@
 using FreshMvvm;
 using MobileApp.PageModels;
 using MobileApp.PageModels.Admin;
+using MobileApp.PageModels.Shared;
 using UserService;
 using Xamarin.Forms;
 
@@ -20,7 +21,7 @@ namespace MobileApp
 
         public void LoadBasicNav()
         {
-            var page = FreshPageModelResolver.ResolvePageModel<AddEditProductPageModel>();
+            var page = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             var basicNavContainer = new FreshNavigationContainer(page);
             MainPage = basicNavContainer;
         }

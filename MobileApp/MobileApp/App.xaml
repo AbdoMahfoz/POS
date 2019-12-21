@@ -46,6 +46,13 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource MainColor}" />
                 <Setter Property="CornerRadius" Value="5" />
             </Style>
+
+            <Style x:Key="ColoredNavBar" TargetType="NavigationPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource Pagebackground}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource MainColor}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
             <converters:ImageLabelVisibilityConverter x:Key="ImageLabelVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>

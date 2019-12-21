@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage
+    x:Class="MobileApp.Pages.User.CategoriesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
+    Style="{StaticResource ColoredNavBar}"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsSource="{Binding Categories}"
+                SelectionMode="Single"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.EmptyView>
+                    <Label Text="No Categories Added" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource BorderGrey}"
+                            CornerRadius="10"
+                            HasShadow="True"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            IsClippedToBounds="True">
+                            <StackLayout
+                                Padding="10,0,10,0"
+                                Orientation="Horizontal"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    FontSize="Large"
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource MainColor}" />
+                                <Image
+                                    HeightRequest="20"
+                                    HorizontalOptions="EndAndExpand"
+                                    Rotation="90"
+                                    Source="up.png"
+                                    WidthRequest="20" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>

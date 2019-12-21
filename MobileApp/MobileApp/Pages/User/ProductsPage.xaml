@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage
+    x:Class="MobileApp.Pages.User.ProductsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsSource="{Binding Categories}"
+                SelectionMode="Single"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No items found." />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <Frame
+                                Padding="5"
+                                BackgroundColor="White"
+                                BorderColor="{StaticResource BorderGrey}"
+                                CornerRadius="15"
+                                HasShadow="True">
+                                <Grid
+                                    Margin="2"
+                                    Padding="5"
+                                    ColumnSpacing="0"
+                                    RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="130" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Image
+                                        Grid.Row="0"
+                                        Aspect="AspectFit"
+                                        HorizontalOptions="End"
+                                        Source="{StaticResource favorite}" />
+
+                                    <Image
+                                        Grid.Row="1"
+                                        Aspect="Fill"
+                                        Source="{Binding ImageUrl}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource MainColor}"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Row="3"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Price}"
+                                        VerticalOptions="CenterAndExpand" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>
