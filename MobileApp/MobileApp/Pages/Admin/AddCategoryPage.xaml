@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage
+    x:Class="MobileApp.Pages.Admin.AddCategoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MobileApp.Controls;assembly=MobileApp"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
+    Style="{StaticResource ColoredNavBar}"
+    mc:Ignorable="d">
+    <freshMvvm:FreshBaseContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="cancel.png" Command="{Binding CloseCommand}" /> 
+    </freshMvvm:FreshBaseContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="20">
+            <controls:RoundedCornerEntry
+                Placeholder="Category Name"
+                Style="{StaticResource LoginEntry}"
+                Text="{Binding CategoryName}" />
+            <Button
+                Command="{Binding InsertCategoryCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="Add Category" />
+        </StackLayout>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>

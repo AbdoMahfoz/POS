@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using FreshMvvm;
+using MobileApp.Helpers;
 using MobileApp.PageModels.Admin;
 using MobileApp.PageModels.User;
-using MobileApp.Pages.User;
 using Xamarin.Forms;
 
 namespace MobileApp.PageModels.Shared
@@ -12,11 +12,17 @@ namespace MobileApp.PageModels.Shared
 {
     public class LoginPageModel : BasePageModel
     {
+        public LoginPageModel()
+        {
+            NavigateToLogin = new Command(async () => await LoginExecute());
+        }
+
         public bool IsAdmin
         {
             get => App.IsAdmin;
             set => App.IsAdmin = value;
         }
+
         public string Email { get; set; }
         public string Password { get; set; }
         public Command NavigateToLogin { get; set; }
@@ -28,24 +34,21 @@ namespace MobileApp.PageModels.Shared
 
         public Command NavigateToGPlus { get; set; }
 
-        public LoginPageModel()
-        {
-            NavigateToLogin = new Command(async () => await LoginExecute());
-        }
-
         private async Task LoginExecute()
         {
             if (!IsLoginDataValid()) return;
             //if (await Login()) 
             LoadMasterDetail();
         }
+
         public void LoadMasterDetail()
         {
             var masterDetailNav = new FreshMasterDetailNavigationContainer();
             masterDetailNav.Init("Hello", "Menu.png");
-            masterDetailNav.AddPage<AddEditProductPageModel>("Manage Your Products", null);
-            masterDetailNav.AddPage<CategoriesPageModel>("Categories", null);
-            masterDetailNav.AddPage<ProductsPageModel>("Products", null);
+            masterDetailNav.AddPage<AddEditProductPageModel>("Manage Your Products");
+            masterDetailNav.AddPage<CategoriesPageModel>("Categories");
+            masterDetailNav.AddPage<AddCategoryPageModel>("Add Categories");
+            masterDetailNav.AddPage<ProductsPageModel>("Products");
             Application.Current.MainPage = masterDetailNav;
         }
 
@@ -58,7 +61,6 @@ namespace MobileApp.PageModels.Shared
                     return App.AdminBackendClient.LoginAsync(Email, Password);
                 else
                     return App.UserBackendClient.LoginAsync(Email, Password);
-
             }
             catch (Exception e)
             {
@@ -73,7 +75,7 @@ namespace MobileApp.PageModels.Shared
             }
         }
 
-        bool IsLoginDataValid()
+        private bool IsLoginDataValid()
         {
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
@@ -81,7 +83,7 @@ namespace MobileApp.PageModels.Shared
                 return false;
             }
 
-            if (!Helpers.EmailValidator.IsEmailValid(Email))
+            if (!EmailValidator.IsEmailValid(Email))
             {
                 UserDialogs.Instance.Alert("Email or Password is incorrect", "Invalid or Missing Data");
                 return false;

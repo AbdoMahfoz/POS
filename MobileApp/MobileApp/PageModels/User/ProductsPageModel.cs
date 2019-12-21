@@ -6,5 +6,9 @@ namespace MobileApp.PageModels.User
 {
    public class ProductsPageModel : BasePageModel
     {
+        public ProductsPageModel()
+        {
+            Title = "Products";
+        }
     }
 }

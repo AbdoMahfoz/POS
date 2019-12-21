@@ -6,6 +6,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Title}"
+    Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>

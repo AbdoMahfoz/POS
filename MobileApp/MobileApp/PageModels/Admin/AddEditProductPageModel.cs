@@ -58,12 +58,12 @@ namespace MobileApp.PageModels.Admin
             }
         }
 
-        private Task<bool> InsertNewItem()
+        private async Task<bool> InsertNewItem()
         {
             UserDialogs.Instance.ShowLoading();
             try
             {
-                App.AdminBackendClient.InsertItemAsync(new ItemRequest
+                await App.AdminBackendClient.InsertItemAsync(new ItemRequest
                 {
                     Name = NewItem.Name,
                     Base64Image = NewItem.Logo,
@@ -71,14 +71,14 @@ namespace MobileApp.PageModels.Admin
                     Price = NewItem.Description,
                     Categories = new[] {NewItem.ItemCategory.Name}
                 });
-                return Task.FromResult(true);
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 //UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert(e.Message, "Error");
-                return Task.FromResult(false);
+                return false;
             }
             finally
             {
@@ -86,12 +86,12 @@ namespace MobileApp.PageModels.Admin
             }
         }
 
-        private Task<bool> UpdateItem()
+        private async Task<bool> UpdateItem()
         {
             UserDialogs.Instance.ShowLoading();
             try
             {
-                App.AdminBackendClient.UpdateItemAsync(new ItemResult
+                await App.AdminBackendClient.UpdateItemAsync(new ItemResult
                 {
                     Id = NewItem.Id,
                     Name = NewItem.Name,
@@ -100,14 +100,14 @@ namespace MobileApp.PageModels.Admin
                     Price = NewItem.Description,
                     Categories = new[] {NewItem.ItemCategory.Name}
                 });
-                return Task.FromResult(true);
+                return true;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 //UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert(e.Message, "Error");
-                return Task.FromResult(false);
+                return false;
             }
             finally
             {
