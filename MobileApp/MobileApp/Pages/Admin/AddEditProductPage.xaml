@@ -10,6 +10,9 @@
     Title="{Binding Title}"
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
+    <freshMvvm:FreshBaseContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="cancel.png" Command="{Binding CloseCommand}" />
+    </freshMvvm:FreshBaseContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20" Spacing="20">

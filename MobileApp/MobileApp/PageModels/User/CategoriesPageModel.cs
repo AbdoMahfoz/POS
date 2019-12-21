@@ -21,6 +21,8 @@ namespace MobileApp.PageModels.User
             };
         }
 
+        public bool IsAdmin => App.IsAdmin;
+
         public ObservableCollection<Category> Categories { get; set; }
 
         public Command OpenAddModalCommand
