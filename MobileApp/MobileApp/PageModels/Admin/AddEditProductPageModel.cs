@@ -69,7 +69,7 @@ namespace MobileApp.PageModels.Admin
                     Base64Image = NewItem.Logo,
                     Description = NewItem.Description,
                     Price = NewItem.Description,
-                    Categories = new[] {NewItem.ItemCategory.Name}
+                    Categories = new[] { NewItem.ItemCategory.Name }
                 });
                 return true;
             }
@@ -98,7 +98,7 @@ namespace MobileApp.PageModels.Admin
                     Base64Image = NewItem.Logo,
                     Description = NewItem.Description,
                     Price = NewItem.Description,
-                    Categories = new[] {NewItem.ItemCategory.Name}
+                    Categories = new[] { NewItem.ItemCategory.Name }
                 });
                 return true;
             }
@@ -115,10 +115,8 @@ namespace MobileApp.PageModels.Admin
             }
         }
 
-        public override void Init(object initData)
+        public override Task Init(object initData)
         {
-            base.Init(initData);
-
             if (initData == null)
             {
                 IsEdit = false;
@@ -133,11 +131,12 @@ namespace MobileApp.PageModels.Admin
                 IsEdit = true;
                 Title = "Edit a Product";
                 ButtonText = "Edit Item";
-                var item = (ShoppingItem) initData;
+                var item = (ShoppingItem)initData;
                 NewItem = item;
                 SelectedCategory = item.ItemCategory;
                 Visibility = true;
             }
+            return base.Init(initData);
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)
@@ -145,8 +144,7 @@ namespace MobileApp.PageModels.Admin
             if (!IsEdit) return;
             UserDialogs.Instance.ShowLoading();
             base.ViewIsAppearing(sender, e);
-            var bytes = Convert.FromBase64String(NewItem.Logo);
-            SelectedImage = ImageSource.FromStream(() => new MemoryStream(bytes));
+            SelectedImage = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(NewItem.Logo)));
             UserDialogs.Instance.HideLoading();
         }
 

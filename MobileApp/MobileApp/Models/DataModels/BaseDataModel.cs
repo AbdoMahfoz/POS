@@ -17,7 +17,6 @@ namespace MobileApp.Models.DataModels
             property = value;
             OnPropertyChanged(propertyName);
             return true;
-
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

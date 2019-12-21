@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using UserService;
+using Xamarin.Forms;
 
 namespace MobileApp.Models.DataModels
 {
@@ -11,5 +12,37 @@ namespace MobileApp.Models.DataModels
         public string Logo { get; set; }
         public double Price { get; set; }
         public Category ItemCategory { get; set; }
+    }
+
+    public class ShoppingItemModel
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public ImageSource Logo { get; set; }
+        public double Price { get; set; }
+        public string ItemCategory { get; set; }
+
+        public ShoppingItemModel()
+        {
+            
+        }
+
+        public ShoppingItemModel(ItemResult item)
+        {
+            Name = item.Name;
+            Description = item.Description;
+            ItemCategory = item.Categories[0];
+            Price = Convert.ToDouble(item.Price);
+            Logo = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(item.Base64Image)));
+        }
+
+        public ShoppingItemModel(ShoppingItem item)
+        {
+            Name = item.Name;
+            Description = item.Description;
+            ItemCategory = item.ItemCategory.Name;
+            Price = item.Price;
+            Logo = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(item.Logo)));
+        }
     }
 }

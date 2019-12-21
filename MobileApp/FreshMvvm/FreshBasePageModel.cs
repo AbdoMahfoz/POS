@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FreshMvvm
@@ -10,6 +11,7 @@ namespace FreshMvvm
     {
         private bool _alreadyAttached;
         private NavigationPage _navigationPage;
+        private object _args;
 
         /// <summary>
         ///     Used when a page is shown modal and wants a new Navigation Stack
@@ -70,8 +72,9 @@ namespace FreshMvvm
         ///     This method is called when the PageModel is loaded, the initData is the data that's sent from pagemodel before
         /// </summary>
         /// <param name="initData">Data that's sent to this PageModel from the pusher</param>
-        public virtual void Init(object initData)
+        public virtual async Task Init(object initData)
         {
+            _args = initData;
         }
 
         internal void WireEvents(Page page)
