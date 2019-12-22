@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using AdminService;
@@ -143,9 +144,10 @@ namespace MobileApp.PageModels.Admin
                 IsEdit = true;
                 Title = "Edit a Product";
                 ButtonText = "Edit Item";
-                var item = (ShoppingItem)initData;
-                NewItem = item;
-                SelectedCategory = item.ItemCategory;
+                ShoppingItemModel item = (ShoppingItemModel)initData;
+                NewItem = new ShoppingItem(item);
+                SelectedImage = item.Logo;
+                SelectedCategory = NewItem.ItemCategory;
                 Visibility = true;
             }
 
