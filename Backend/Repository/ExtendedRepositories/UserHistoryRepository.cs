@@ -1,13 +1,12 @@
 ﻿using Backend.Models;
 using System.Linq;
-using System.Threading.Tasks;
 using System.ServiceModel;
 
 namespace Backend.Repository.ExtendedRepositories
 {
     public interface IUserHistoryRepository : IRepository<UserHistory>
     {
-        Task AddToCart(int UserId, int ItemId);
+        void AddToCart(int UserId, int ItemId);
         void SetItemCountInCart(int UserId, int ItemId, int newCount);
         void RemoveItemFromCart(int UserId, int ItemId);
         IQueryable<UserHistory> GetUserCart(int UserId);
@@ -17,18 +16,18 @@ namespace Backend.Repository.ExtendedRepositories
     public class UserHistoryRepository : Repository<UserHistory>, IUserHistoryRepository
     {
         public UserHistoryRepository(ApplicationDbContext context) : base(context) { }
-        public async Task AddToCart(int UserId, int ItemId)
+        public void AddToCart(int UserId, int ItemId)
         {
             UserHistory prevInstance = (from item in GetAll()
                                         where item.UserId == UserId && item.ItemId == ItemId
                                         select item).SingleOrDefault();
             if (prevInstance == null)
             {
-                await Insert(new UserHistory
+                Insert(new UserHistory
                 {
                     UserId = UserId,
                     ItemId = ItemId
-                });
+                }).Wait();
                 return;
             }
             else
