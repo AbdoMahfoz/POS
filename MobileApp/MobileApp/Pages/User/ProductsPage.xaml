@@ -9,9 +9,12 @@
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Spacing="20">
+        <StackLayout
+            Padding="0,0,10,0"
+            Orientation="Horizontal"
+            Spacing="20">
             <Label
-                FontSize="Large"
+                FontSize="Title"
                 HorizontalOptions="StartAndExpand"
                 Text="{Binding Title}"
                 TextColor="White"
@@ -20,18 +23,21 @@
             <ImageButton
                 BackgroundColor="Transparent"
                 Command="{Binding OpenAddModalCommand}"
+                HorizontalOptions="Center"
                 IsVisible="{Binding IsAdmin}"
-                Source="plus.png" />
+                Source="plus.png"
+                VerticalOptions="Center" />
 
             <ImageButton
                 BackgroundColor="Transparent"
-                HorizontalOptions="Start"
+                Command="{Binding OpenCartCommand}"
+                HorizontalOptions="Center"
                 Source="cart.png"
                 VerticalOptions="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
+        <RefreshView Command="{Binding RefreshCommand}" RefreshColor="{StaticResource SecColor}">
             <CollectionView
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"
@@ -45,6 +51,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.EmptyView>
                     <Label
+                        FontSize="Title"
                         HorizontalOptions="CenterAndExpand"
                         Text="No items found."
                         VerticalOptions="CenterAndExpand" />
@@ -91,6 +98,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>
