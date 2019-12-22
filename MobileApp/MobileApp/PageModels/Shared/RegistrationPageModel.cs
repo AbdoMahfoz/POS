@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using AuthenticationService;
+using FreshMvvm;
 using MobileApp.Helpers;
 using MobileApp.Models.DataModels;
 using MobileApp.PageModels.Admin;
+using MobileApp.PageModels.User;
 using UserService;
 using Xamarin.Forms;
 
@@ -27,9 +29,16 @@ namespace MobileApp.PageModels.Shared
         {
             if (!IsAccountValid()) return;
             if (await RegisterAccount())
-                await CoreMethods.PushPageModel<AddEditProductPageModel>();
+                LoadMasterDetail();
         }
-
+        public void LoadMasterDetail()
+        {
+            var masterDetailNav = new FreshMasterDetailNavigationContainer();
+            masterDetailNav.Init("Hello", "Menu.png");
+            masterDetailNav.AddPage<CategoriesPageModel>("Categories");
+            masterDetailNav.AddPage<ProductsPageModel>("Products");
+            Application.Current.MainPage = masterDetailNav;
+        }
         private async Task<bool> RegisterAccount()
         {
             UserDialogs.Instance.ShowLoading();
