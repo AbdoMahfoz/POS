@@ -19,6 +19,12 @@ namespace Backend.Security.Implementations
             var validationParameters = new TokenValidationParameters
             {
                 IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateAudience = false,
+                ValidateActor = false,
+                ValidateIssuer = false,
+                ValidateLifetime = true,
+                ValidateTokenReplay = false,
+                ValidateIssuerSigningKey = true
             };
             try
             {
