@@ -40,7 +40,7 @@ namespace MobileApp.PageModels.User
             {
                 return new Command(async () =>
                 {
-                    await CoreMethods.PushPageModel<AddEditProductPageModel>(SelectedItem);
+                    await CoreMethods.PushPageModel<ProductDetailsPageModel>(SelectedItem);
                 });
             }
         }

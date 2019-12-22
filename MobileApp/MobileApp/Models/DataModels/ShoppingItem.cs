@@ -16,6 +16,7 @@ namespace MobileApp.Models.DataModels
 
     public class ShoppingItemModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public ImageSource Logo { get; set; }
@@ -24,11 +25,12 @@ namespace MobileApp.Models.DataModels
 
         public ShoppingItemModel()
         {
-            
+
         }
 
         public ShoppingItemModel(ItemResult item)
         {
+            Id = item.Id;
             Name = item.Name;
             Description = item.Description;
             ItemCategory = item.Categories[0];
@@ -39,6 +41,7 @@ namespace MobileApp.Models.DataModels
         public ShoppingItemModel(ShoppingItem item)
         {
             Name = item.Name;
+            Id = item.Id;
             Description = item.Description;
             ItemCategory = item.ItemCategory.Name;
             Price = item.Price;

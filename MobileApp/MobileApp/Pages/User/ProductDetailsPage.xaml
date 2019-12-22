@@ -19,14 +19,14 @@
 
             <ImageButton
                 BackgroundColor="Transparent"
-                Command="{Binding OpenAddModalCommand}"
+                Command="{Binding OpenEditPageCommand}"
                 IsVisible="{Binding IsAdmin}"
                 Source="change.png"
                 VerticalOptions="Center" />
 
             <ImageButton
                 BackgroundColor="Transparent"
-                Command="{Binding OpenAddModalCommand}"
+                Command="{Binding DeleteItemCommand}"
                 IsVisible="{Binding IsAdmin}"
                 Source="delete.png"
                 VerticalOptions="Center" />
@@ -66,9 +66,9 @@
                 TextColor="{StaticResource MainColor}" />
 
             <Button
-                Command="{Binding InsertNewItemCommand}"
+                Command="{Binding AddToCartCommand}"
                 Style="{StaticResource ButtonStyle}"
-                Text="{Binding ButtonText}" />
+                Text="Add To Cart" />
         </StackLayout>
     </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>
