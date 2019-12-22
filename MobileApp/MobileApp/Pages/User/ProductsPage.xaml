@@ -44,7 +44,10 @@
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.EmptyView>
-                    <Label Text="No items found." />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No items found."
+                        VerticalOptions="CenterAndExpand" />
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

@@ -25,9 +25,9 @@ namespace MobileApp.PageModels.Shared
 
         private async Task RegisterExecute()
         {
-            //if (!IsAccountValid()) return;
-            //if (await RegisterAccount())
-            //    await CoreMethods.PushPageModel<AddEditProductPageModel>();
+            if (!IsAccountValid()) return;
+            if (await RegisterAccount())
+                await CoreMethods.PushPageModel<AddEditProductPageModel>();
         }
 
         private async Task<bool> RegisterAccount()
@@ -36,7 +36,7 @@ namespace MobileApp.PageModels.Shared
             try
             {
                 string token = "";
-                await Task.Run(() => 
+                await Task.Run(() =>
                 {
                     token = App.AuthenticationClient.Register(new UserDataRequest
                     {

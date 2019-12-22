@@ -6,13 +6,98 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
+        <StackLayout Padding="20" Spacing="20">
+            <RefreshView Command="{Binding PulltoRefreshCommand}">
+                <CollectionView
+                    x:Name="CollectionView"
+                    HorizontalOptions="Fill"
+                    ItemSizingStrategy="MeasureFirstItem"
+                    ItemsSource="{Binding CartContent}"
+                    SelectionMode="Single"
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.EmptyView>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="You cart is Empty :'("
+                            VerticalOptions="CenterAndExpand" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.DeleteCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IconImageSource="delete.png"
+                                            Text="Delete" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="{StaticResource BorderGrey}"
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    HeightRequest="75"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="0"
+                                            HeightRequest="50"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding Logo}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="50" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="Title"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource MainColor}"
+                                            VerticalOptions="Center" />
+
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="Medium"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Price}"
+                                            TextColor="Gray"
+                                            VerticalOptions="Center" />
+
+                                    </Grid>
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </RefreshView>
+            <Button
+                Command="{Binding AddToCartCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="Checkout" />
         </StackLayout>
     </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>

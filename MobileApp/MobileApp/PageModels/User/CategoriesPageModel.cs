@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using MobileApp.Models.DataModels;
 using MobileApp.PageModels.Admin;
 using Xamarin.Forms;
-using System.Linq;
 
 namespace MobileApp.PageModels.User
 {
@@ -13,25 +13,7 @@ namespace MobileApp.PageModels.User
         public CategoriesPageModel()
         {
             Title = "Categories";
-            Categories = new ObservableCollection<Category>
-            {
-                new Category {Name = "Men", AddedDate = DateTime.Now.Date},
-                new Category {Name = "Women", AddedDate = DateTime.Now.Date},
-                new Category {Name = "Kids", AddedDate = DateTime.Now.Date},
-                new Category {Name = "Dogs", AddedDate = DateTime.Now.Date},
-                new Category {Name = "Cats", AddedDate = DateTime.Now.Date}
-            };
-        }
-
-        public override async Task Init(object initData)
-        {
-            string[] categories = null;
-            await Task.Run(() =>
-            {
-                categories = App.UserBackendClient.GetCategories();
-            });
-            Categories = new ObservableCollection<Category>(categories.Select(u => new Category { Name = u, AddedDate = DateTime.Now.Date }));
-            await base.Init(initData);
+            Categories = new ObservableCollection<Category>();
         }
 
         public bool IsAdmin => App.IsAdmin;
@@ -43,6 +25,27 @@ namespace MobileApp.PageModels.User
             get
             {
                 return new Command(async () => { await CoreMethods.PushPageModel<AddCategoryPageModel>(null, true); });
+            }
+        }
+
+        public override async Task Init(object initData)
+        {
+            try
+            {
+                string[] categories = null;
+                await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
+                Categories =
+                    new ObservableCollection<Category>(categories.Select(u => new Category
+                    { Name = u, AddedDate = DateTime.Now.Date }));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                await base.Init(initData);
             }
         }
     }

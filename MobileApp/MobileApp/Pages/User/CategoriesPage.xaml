@@ -39,7 +39,10 @@
                 SelectionMode="Single"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.EmptyView>
-                    <Label Text="No Categories Added" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No Categories Added"
+                        VerticalOptions="CenterAndExpand" />
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
