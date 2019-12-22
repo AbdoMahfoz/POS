@@ -20,6 +20,7 @@ namespace MobileApp.PageModels.Admin
         {
             get { return new Command(async () => { await CoreMethods.PopPageModel(null, true); }); }
         }
+
         private async Task InsertCategoryExecute()
         {
             if (string.IsNullOrWhiteSpace(CategoryName))
@@ -29,7 +30,7 @@ namespace MobileApp.PageModels.Admin
             }
             if (await InsertCategory())
             {
-                await CoreMethods.PopModalNavigationService();
+                await CoreMethods.PopPageModel(null, true);
             }
         }
 
@@ -44,7 +45,6 @@ namespace MobileApp.PageModels.Admin
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                //UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Alert(e.Message, "Error");
                 return false;
             }
