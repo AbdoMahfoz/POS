@@ -22,12 +22,15 @@ namespace MobileApp.PageModels.Admin
         }
         private async Task InsertCategoryExecute()
         {
-            if (string.IsNullOrWhiteSpace(CategoryName)) return;
-
-            //if (await InsertCategory())
-            //{
-            //    await CoreMethods.PopModalNavigationService();
-            //}
+            if (string.IsNullOrWhiteSpace(CategoryName))
+            {
+                UserDialogs.Instance.Alert("Please Enter a Category Name", "Error");
+                return;
+            }
+            if (await InsertCategory())
+            {
+                await CoreMethods.PopModalNavigationService();
+            }
         }
 
         private async Task<bool> InsertCategory()

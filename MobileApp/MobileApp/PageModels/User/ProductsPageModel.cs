@@ -11,66 +11,92 @@ namespace MobileApp.PageModels.User
 {
     public class ProductsPageModel : BasePageModel
     {
+        private Category _category;
+
+        public ProductsPageModel()
+        {
+            Title = "Products";
+            Products = new ObservableCollection<ShoppingItemModel>
+            {
+                new ShoppingItemModel()
+            };
+        }
+
         public bool IsAdmin => App.IsAdmin;
+        public ShoppingItemModel SelectedItem { get; set; }
+
         public Command OpenAddModalCommand
         {
             get
             {
-                return new Command(async () => { await CoreMethods.PushPageModel<AddEditProductPageModel>(null, true); });
+                return new Command(
+                    async () => { await CoreMethods.PushPageModel<AddEditProductPageModel>(null, true); });
             }
         }
-        public ProductsPageModel()
+
+        public Command ItemSelectedCommand
         {
-            Title = "Products";
-            Products = new ObservableCollection<ShoppingItemModel>()
+            get
             {
-                new ShoppingItemModel(),
-            };
+                return new Command(async () =>
+                {
+                    await CoreMethods.PushPageModel<AddEditProductPageModel>(SelectedItem);
+                });
+            }
         }
 
         public ObservableCollection<ShoppingItemModel> Products { get; set; }
 
-        public override async Task Init(object initData)
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
+            base.ViewIsAppearing(sender, e);
             UserDialogs.Instance.ShowLoading();
-            if (initData == null)
-            {
+            if (_category == null)
                 try
                 {
                     ItemResult[] allProducts = null;
-                    await Task.Run(() =>
+                    Task.Run(() =>
                     {
                         allProducts = App.UserBackendClient.GetItems();
+                        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
                     });
-                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine(exception);
                     throw;
                 }
+            else
+                try
+                {
+                    ItemResult[] allProducts = null;
+                    Task.Run(() =>
+                    {
+                        allProducts = App.UserBackendClient.GetItemsInCategry(_category.Name);
+                        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
+                    });
+
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                    throw;
+                }
+            UserDialogs.Instance.HideLoading();
+        }
+
+        public override async Task Init(object initData)
+        {
+            if (initData == null)
+            {
+                _category = null;
             }
             else
             {
                 var category = (Category)initData;
-
-                try
-                {
-                    ItemResult[] allProducts = null;
-                    await Task.Run(() =>
-                    {
-                        allProducts = App.UserBackendClient.GetItemsInCategry(category.Name);
-                    });
-                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
             }
 
-            UserDialogs.Instance.HideLoading();
+
             await base.Init(initData);
         }
     }

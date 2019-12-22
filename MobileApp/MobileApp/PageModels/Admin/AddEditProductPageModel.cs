@@ -31,10 +31,12 @@ namespace MobileApp.PageModels.Admin
         public ShoppingItem NewItem { get; set; }
         public Command PickPhotoCommand { get; set; }
         public Command InsertNewItemCommand { get; set; }
+
         public Command CloseCommand
         {
             get { return new Command(async () => { await CoreMethods.PopPageModel(null, true); }); }
         }
+
         public ImageSource SelectedImage { get; set; }
         public string ButtonText { get; set; }
         public bool Visibility { get; set; }
@@ -50,14 +52,16 @@ namespace MobileApp.PageModels.Admin
             {
                 if (await UpdateItem())
                 {
-                    //navigate
+                    UserDialogs.Instance.Alert("Updated Successfully :D", "success");
+                    await CoreMethods.PopPageModel(null, true);
                 }
             }
             else
             {
                 if (await InsertNewItem())
                 {
-                    //navigate 
+                    UserDialogs.Instance.Alert("Inserted Successfully :D", "success");
+                    await CoreMethods.PopPageModel(null, true);
                 }
             }
         }
@@ -146,6 +150,7 @@ namespace MobileApp.PageModels.Admin
                 SelectedCategory = item.ItemCategory;
                 Visibility = true;
             }
+
             return base.Init(initData);
         }
 
@@ -172,6 +177,13 @@ namespace MobileApp.PageModels.Admin
                 return false;
             }
 
+            if (SelectedCategory == null)
+            {
+                UserDialogs.Instance.Alert("Please select a Category", "Invalid Data");
+                return false;
+            }
+
+            NewItem.ItemCategory = SelectedCategory;
             return true;
         }
 
@@ -187,7 +199,8 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             var mediaOption = new PickMediaOptions
             {
-                PhotoSize = PhotoSize.Medium
+                PhotoSize = PhotoSize.Small,
+                CompressionQuality = 50
             };
 
             MediaFile selectedImageFile = null;
@@ -200,8 +213,8 @@ namespace MobileApp.PageModels.Admin
                     if (selectedImageFile != null)
                     {
                         var image = await CrossImageEdit.Current.CreateImageAsync(selectedImageFile.GetStream());
-                        var width = 700;
-                        var height = 700;
+                        var width = 600;
+                        var height = 600;
                         var data = image.Resize(width, height).ToPng();
                         SelectedImage = ImageSource.FromStream(() => new MemoryStream(data));
                         NewItem.Logo = Convert.ToBase64String(data);

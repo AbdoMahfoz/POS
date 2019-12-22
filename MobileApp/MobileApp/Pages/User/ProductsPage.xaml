@@ -36,6 +36,8 @@
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"
                 ItemsSource="{Binding Categories}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectionChangedCommand="{Binding ItemSelectedCommand}"
                 SelectionMode="Single"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.ItemsLayout>

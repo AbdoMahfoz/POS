@@ -38,7 +38,6 @@ namespace MobileApp.PageModels.Shared
             if (await Login())
             {
                 LoadMasterDetail();
-                UserDialogs.Instance.Alert(App.Token, "HEY ABDO");
             }
             else
                 UserDialogs.Instance.Alert("Email or password is incorrect", "Something went wrong");
