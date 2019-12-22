@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MobileApp.Models.DataModels;
 using MobileApp.PageModels.Admin;
+using UserService;
 using Xamarin.Forms;
 
 namespace MobileApp.PageModels.User
@@ -31,37 +32,45 @@ namespace MobileApp.PageModels.User
 
         public override async Task Init(object initData)
         {
-            //UserDialogs.Instance.ShowLoading();
-            //if (initData == null)
-            //{
-            //    try
-            //    {
-            //        var allProducts = await App.UserBackendClient.GetItemsAsync();
-            //        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e);
-            //        throw;
-            //    }
-            //}
-            //else
-            //{
-            //    var category = (Category)initData;
+            UserDialogs.Instance.ShowLoading();
+            if (initData == null)
+            {
+                try
+                {
+                    ItemResult[] allProducts = null;
+                    await Task.Run(() =>
+                    {
+                        allProducts = App.UserBackendClient.GetItems();
+                    });
+                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+            else
+            {
+                var category = (Category)initData;
 
-            //    try
-            //    {
-            //        var allProducts = await App.UserBackendClient.GetItemsInCategryAsync(category.Name);
-            //        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e);
-            //        throw;
-            //    }
-            //}
+                try
+                {
+                    ItemResult[] allProducts = null;
+                    await Task.Run(() =>
+                    {
+                        allProducts = App.UserBackendClient.GetItemsInCategry(category.Name);
+                    });
+                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
 
-            //UserDialogs.Instance.HideLoading();
+            UserDialogs.Instance.HideLoading();
             await base.Init(initData);
         }
     }
