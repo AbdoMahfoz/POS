@@ -1,5 +1,6 @@
 ﻿using Backend.DataContracts;
 using Backend.Security.Interfaces;
+using System;
 using System.ServiceModel;
 
 namespace Backend.Services
@@ -13,6 +14,18 @@ namespace Backend.Services
         {
             this.Tokenizer = Tokenizer;
             this.Auth = Auth;
+        }
+        public bool IsAdmin(string token)
+        {
+            try
+            {
+                Auth.EnsureAuthorizedAsAdmin(token);
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
         }
         public string Login(string email, string password)
         {
