@@ -32,6 +32,14 @@ namespace MobileApp.PageModels.User
             }
         }
 
+        public Command OpenCartCommand
+        {
+            get
+            {
+                return new Command(async () => { await CoreMethods.PushPageModel<CartPageModel>(null, true); });
+            }
+        }
+
         private async Task RefreshExecute()
         {
             IsRefreshing = true;
@@ -41,7 +49,7 @@ namespace MobileApp.PageModels.User
                 await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
                 Categories =
                     new ObservableCollection<Category>(categories.Select(u => new Category
-                        {Name = u, AddedDate = DateTime.Now.Date}));
+                    { Name = u, AddedDate = DateTime.Now.Date }));
             }
             catch (Exception e)
             {
@@ -62,7 +70,7 @@ namespace MobileApp.PageModels.User
                 await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
                 Categories =
                     new ObservableCollection<Category>(categories.Select(u => new Category
-                        {Name = u, AddedDate = DateTime.Now.Date}));
+                    { Name = u, AddedDate = DateTime.Now.Date }));
             }
             catch (Exception e)
             {

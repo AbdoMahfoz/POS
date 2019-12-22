@@ -130,6 +130,12 @@ namespace AuthenticationService
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/RefreshToken", ReplyAction="http://tempuri.org/IAuthenticationService/RefreshTokenResponse")]
         System.Threading.Tasks.Task<string> RefreshTokenAsync(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/IsAdmin", ReplyAction="http://tempuri.org/IAuthenticationService/IsAdminResponse")]
+        bool IsAdmin(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/IsAdmin", ReplyAction="http://tempuri.org/IAuthenticationService/IsAdminResponse")]
+        System.Threading.Tasks.Task<bool> IsAdminAsync(string token);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
@@ -220,6 +226,16 @@ namespace AuthenticationService
         public System.Threading.Tasks.Task<string> RefreshTokenAsync(string token)
         {
             return base.Channel.RefreshTokenAsync(token);
+        }
+        
+        public bool IsAdmin(string token)
+        {
+            return base.Channel.IsAdmin(token);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsAdminAsync(string token)
+        {
+            return base.Channel.IsAdminAsync(token);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

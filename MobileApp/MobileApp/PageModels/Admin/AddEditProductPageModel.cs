@@ -149,6 +149,8 @@ namespace MobileApp.PageModels.Admin
                 SelectedImage = item.Logo;
                 SelectedCategory = NewItem.ItemCategory;
                 Visibility = true;
+
+                //7ot source el image 3ala tool 
             }
 
             await PopulateCategories();

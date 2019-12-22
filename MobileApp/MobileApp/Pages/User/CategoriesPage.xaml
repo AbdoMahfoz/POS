@@ -9,7 +9,11 @@
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Spacing="20">
+        <StackLayout
+            Padding="0,0,10,0"
+            Orientation="Horizontal"
+            Spacing="20">
+
             <Label
                 FontSize="Large"
                 HorizontalOptions="StartAndExpand"

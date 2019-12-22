@@ -12,22 +12,27 @@ namespace MobileApp.PageModels.User
     {
         public Command DeleteCommand { get; set; }
         public Command PulltoRefreshCommand { get; set; }
-
-        private ObservableCollection<ShoppingItemModel> CartItems { get; }
+        public Command CloseCommand
+        {
+            get { return new Command(async () => { await CoreMethods.PopPageModel(null, true); }); }
+        }
+        public bool IsRefreshing { get; set; }
+        public ObservableCollection<ShoppingItemModel> CartItems { get; set; }
 
         public CartPageModel()
         {
+            Title = "Your Cart";
             CartItems = new ObservableCollection<ShoppingItemModel>();
             DeleteCommand = new Command(async o => await DeleteExecute(o));
             PulltoRefreshCommand = new Command(async () => await PulltoRefreshExecute());
-            Title = "Your Cart";
+
         }
 
         private async Task DeleteExecute(object obj)
         {
             UserDialogs.Instance.ShowLoading();
             if (obj == null) return;
-            var item = (ShoppingItemModel) obj;
+            var item = (ShoppingItemModel)obj;
 
             try
             {
@@ -47,7 +52,7 @@ namespace MobileApp.PageModels.User
 
         private async Task PulltoRefreshExecute()
         {
-            UserDialogs.Instance.ShowLoading();
+            IsRefreshing = true;
             try
             {
                 ItemResult[] allProducts = null;
@@ -61,8 +66,30 @@ namespace MobileApp.PageModels.User
             }
             finally
             {
+                IsRefreshing = false;
+            }
+        }
+
+        public override async Task Init(object initData)
+        {
+            UserDialogs.Instance.ShowLoading();
+            try
+            {
+                ItemResult[] allProducts = null;
+                await Task.Run(() => { allProducts = App.UserBackendClient.GetCart(App.Token); });
+                CartItems.Clear();
+                foreach (var item in allProducts) CartItems.Add(new ShoppingItemModel(item));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
                 UserDialogs.Instance.HideLoading();
             }
+            await base.Init(initData);
         }
     }
 }
