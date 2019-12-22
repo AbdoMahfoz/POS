@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage
+    x:Class="MobileApp.Pages.User.ProductDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MobileApp.Controls;assembly=MobileApp"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" Spacing="20">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="StartAndExpand"
+                Text="{Binding Title}"
+                TextColor="White"
+                VerticalOptions="CenterAndExpand" />
+
+            <ImageButton
+                BackgroundColor="Transparent"
+                Command="{Binding OpenAddModalCommand}"
+                IsVisible="{Binding IsAdmin}"
+                Source="change.png"
+                VerticalOptions="Center" />
+
+            <ImageButton
+                BackgroundColor="Transparent"
+                Command="{Binding OpenAddModalCommand}"
+                IsVisible="{Binding IsAdmin}"
+                Source="delete.png"
+                VerticalOptions="Center" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image
+                Width="250"
+                HeightRequest="250"
+                Source="{Binding Item.Logo}" />
+            <Label
+                FontSize="Title"
+                Text="{Binding Item.Name}"
+                TextColor="{StaticResource MainColor}" />
+
+            <controls:RoundedCornerEntry
+                Placeholder="Price"
+                Style="{StaticResource LoginEntry}"
+                Text="{Binding Item.Price}" />
+            <Picker
+                Title="Item Category"
+                FontSize="Large"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Categories}"
+                SelectedItem="{Binding SelectedCategory}"
+                TextColor="{StaticResource MainColor}" />
+
+            <Editor
+                AutoSize="TextChanges"
+                BackgroundColor="White"
+                FontSize="Large"
+                IsTextPredictionEnabled="True"
+                Keyboard="Chat"
+                Placeholder="Description"
+                Text="{Binding Item.Description}"
+                TextColor="{StaticResource MainColor}" />
+
+            <Button
+                Command="{Binding InsertNewItemCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="{Binding ButtonText}" />
+        </StackLayout>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>

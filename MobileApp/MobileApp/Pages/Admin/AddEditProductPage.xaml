@@ -11,7 +11,7 @@
     Style="{StaticResource ColoredNavBar}"
     mc:Ignorable="d">
     <freshMvvm:FreshBaseContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="cancel.png" Command="{Binding CloseCommand}" />
+        <ToolbarItem Command="{Binding CloseCommand}" IconImageSource="cancel.png" />
     </freshMvvm:FreshBaseContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
@@ -49,10 +49,6 @@
                     Text="{Binding NewItem.Name}" />
 
                 <controls:RoundedCornerEntry
-                    Placeholder="Description"
-                    Style="{StaticResource LoginEntry}"
-                    Text="{Binding NewItem.Description}" />
-                <controls:RoundedCornerEntry
                     Placeholder="Price"
                     Style="{StaticResource LoginEntry}"
                     Text="{Binding NewItem.Price}" />
@@ -62,6 +58,15 @@
                     ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding SelectedCategory}"
+                    TextColor="{StaticResource MainColor}" />
+                <Editor
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    FontSize="Large"
+                    IsTextPredictionEnabled="True"
+                    Keyboard="Chat"
+                    Placeholder="Description"
+                    Text="{Binding NewItem.Description}"
                     TextColor="{StaticResource MainColor}" />
                 <Button
                     Command="{Binding InsertNewItemCommand}"
