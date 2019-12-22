@@ -32,7 +32,10 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" RefreshColor="{StaticResource SecColor}">
+        <RefreshView
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
+            RefreshColor="{StaticResource SecColor}">
             <CollectionView
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"

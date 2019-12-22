@@ -11,6 +11,7 @@ namespace MobileApp.PageModels.User
     {
         public ProductDetailsPageModel()
         {
+            Item = new ShoppingItemModel();
             Title = Item.Name;
             AddToCartCommand = new Command(async () => await AddToCartExecute());
             DeleteItemCommand = new Command(async () => await DeleteItemExecute());

@@ -36,9 +36,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Image
-                Width="250"
                 HeightRequest="250"
-                Source="{Binding Item.Logo}" />
+                Source="{Binding Item.Logo}"
+                WidthRequest="250" />
             <Label
                 FontSize="Title"
                 Text="{Binding Item.Name}"

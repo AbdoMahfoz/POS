@@ -37,11 +37,14 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <RefreshView Command="{Binding RefreshCommand}" RefreshColor="{StaticResource SecColor}">
+        <RefreshView
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
+            RefreshColor="{StaticResource SecColor}">
             <CollectionView
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"
-                ItemsSource="{Binding Categories}"
+                ItemsSource="{Binding Products}"
                 SelectedItem="{Binding SelectedItem}"
                 SelectionChangedCommand="{Binding ItemSelectedCommand}"
                 SelectionMode="Single"
@@ -82,6 +85,7 @@
                                         Source="{Binding Logo}" />
                                     <Label
                                         Grid.Row="1"
+                                        FontSize="Medium"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Name}"
                                         TextColor="{StaticResource MainColor}"
@@ -89,6 +93,7 @@
                                     <Label
                                         Grid.Row="2"
                                         FontAttributes="Bold"
+                                        FontSize="Small"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Price}"
                                         VerticalOptions="CenterAndExpand" />
