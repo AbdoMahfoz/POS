@@ -19,11 +19,16 @@ namespace MobileApp
 
         public static bool IsAdmin { get; set; }
         public static string Token { get; set; }
-        public static UserServiceClient UserBackendClient { get; set; } = new UserServiceClient();
-        public static AdminServiceClient AdminBackendClient { get; set; } = new AdminServiceClient();
+        const string IPAddress = "10.0.2.2";
+        public static UserServiceClient UserBackendClient { get; set; } =
+            new UserServiceClient(UserServiceClient.EndpointConfiguration.BasicHttpBinding_IUserService,
+                                 $"http://{IPAddress}:8080/svc");
+        public static AdminServiceClient AdminBackendClient { get; set; } = 
+            new AdminServiceClient(AdminServiceClient.EndpointConfiguration.BasicHttpBinding_IAdminService,
+                                   $"http://{IPAddress}:8081/svc");
         public static AuthenticationServiceClient AuthenticationClient { get; set; } =
             new AuthenticationServiceClient(AuthenticationServiceClient.EndpointConfiguration.BasicHttpBinding_IAuthenticationService,
-                                            new EndpointAddress("http://10.0.2.2:8082/svc"));
+                                            $"http://{IPAddress}:8082/svc");
 
         public void LoadBasicNav()
         {

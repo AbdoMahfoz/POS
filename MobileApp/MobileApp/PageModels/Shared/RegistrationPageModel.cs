@@ -35,13 +35,17 @@ namespace MobileApp.PageModels.Shared
             UserDialogs.Instance.ShowLoading();
             try
             {
-                string token = await App.AuthenticationClient.RegisterAsync(new UserDataRequest
+                string token = "";
+                await Task.Run(() => 
                 {
-                    Address = Account.Address,
-                    Area = Account.Area,
-                    Email = Account.Email,
-                    Name = Account.Name,
-                    Password = Account.Password
+                    token = App.AuthenticationClient.Register(new UserDataRequest
+                    {
+                        Address = Account.Address,
+                        Area = Account.Area,
+                        Email = Account.Email,
+                        Name = Account.Name,
+                        Password = Account.Password
+                    });
                 });
                 if (string.IsNullOrWhiteSpace(token)) return false;
                 App.Token = token;

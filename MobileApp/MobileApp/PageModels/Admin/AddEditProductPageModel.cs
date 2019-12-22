@@ -67,13 +67,16 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                await App.AdminBackendClient.InsertItemAsync(App.Token, new ItemRequest
+                await Task.Run(() =>
                 {
-                    Name = NewItem.Name,
-                    Base64Image = NewItem.Logo,
-                    Description = NewItem.Description,
-                    Price = NewItem.Description,
-                    Categories = new[] { NewItem.ItemCategory.Name }
+                    App.AdminBackendClient.InsertItem(App.Token, new ItemRequest
+                    {
+                        Name = NewItem.Name,
+                        Base64Image = NewItem.Logo,
+                        Description = NewItem.Description,
+                        Price = NewItem.Description,
+                        Categories = new[] { NewItem.ItemCategory.Name }
+                    });
                 });
                 return true;
             }
@@ -95,14 +98,17 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                await App.AdminBackendClient.UpdateItemAsync(App.Token, new ItemResult
+                await Task.Run(() =>
                 {
-                    Id = NewItem.Id,
-                    Name = NewItem.Name,
-                    Base64Image = NewItem.Logo,
-                    Description = NewItem.Description,
-                    Price = NewItem.Description,
-                    Categories = new[] { NewItem.ItemCategory.Name }
+                    App.AdminBackendClient.UpdateItem(App.Token, new ItemResult
+                    {
+                        Id = NewItem.Id,
+                        Name = NewItem.Name,
+                        Base64Image = NewItem.Logo,
+                        Description = NewItem.Description,
+                        Price = NewItem.Description,
+                        Categories = new[] { NewItem.ItemCategory.Name }
+                    });
                 });
                 return true;
             }

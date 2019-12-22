@@ -35,7 +35,7 @@ namespace MobileApp.PageModels.Admin
             UserDialogs.Instance.ShowLoading();
             try
             {
-                await App.AdminBackendClient.AddCategoryAsync(App.Token, CategoryName);
+                await Task.Run(() => App.AdminBackendClient.AddCategory(App.Token, CategoryName));
                 return true;
             }
             catch (Exception e)
