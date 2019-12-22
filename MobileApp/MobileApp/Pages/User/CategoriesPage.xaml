@@ -25,13 +25,14 @@
 
             <ImageButton
                 BackgroundColor="Transparent"
-                HorizontalOptions="Start"
+                Command="{Binding OpenCartCommand}"
+                HorizontalOptions="Center"
                 Source="cart.png"
                 VerticalOptions="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <RefreshView Command="{Binding RefreshCommand}" RefreshColor="{StaticResource SecColor}">
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" RefreshColor="{StaticResource SecColor}">
             <CollectionView
                 HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"

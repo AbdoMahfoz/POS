@@ -14,10 +14,14 @@ namespace MobileApp.PageModels.User
         {
             Title = "Categories";
             Categories = new ObservableCollection<Category>();
+            RefreshCommand = new Command(async () => await RefreshExecute());
         }
+
+        public bool IsRefreshing { get; set; }
 
         public bool IsAdmin => App.IsAdmin;
 
+        public Command RefreshCommand { get; set; }
         public ObservableCollection<Category> Categories { get; set; }
 
         public Command OpenAddModalCommand
@@ -25,6 +29,28 @@ namespace MobileApp.PageModels.User
             get
             {
                 return new Command(async () => { await CoreMethods.PushPageModel<AddCategoryPageModel>(null, true); });
+            }
+        }
+
+        private async Task RefreshExecute()
+        {
+            IsRefreshing = true;
+            try
+            {
+                string[] categories = null;
+                await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
+                Categories =
+                    new ObservableCollection<Category>(categories.Select(u => new Category
+                        {Name = u, AddedDate = DateTime.Now.Date}));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                IsRefreshing = false;
             }
         }
 
@@ -36,7 +62,7 @@ namespace MobileApp.PageModels.User
                 await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
                 Categories =
                     new ObservableCollection<Category>(categories.Select(u => new Category
-                    { Name = u, AddedDate = DateTime.Now.Date }));
+                        {Name = u, AddedDate = DateTime.Now.Date}));
             }
             catch (Exception e)
             {

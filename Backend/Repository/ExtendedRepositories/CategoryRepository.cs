@@ -19,7 +19,7 @@ namespace Backend.Repository.ExtendedRepositories
         public override Task Insert(Category entity)
         {
             if (GetAll().Where(u => u.Name == entity.Name).Any()) throw new FaultException($"Category with name {entity.Name} already exists");
-            return Insert(entity);
+            return base.Insert(entity);
         }
     }
 }
