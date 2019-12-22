@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using AdminService;
@@ -20,12 +23,7 @@ namespace MobileApp.PageModels.Admin
         {
             PickPhotoCommand = new Command(PickPhotoExcute);
             InsertNewItemCommand = new Command(async () => await CommandExecute());
-            Categories = new List<Category>
-            {
-                new Category {Id = 1, Name = "Food"},
-                new Category {Id = 2, Name = "Water"},
-                new Category {Id = 3, Name = "Air"}
-            };
+            Categories = new ObservableCollection<Category>();
         }
 
         public ShoppingItem NewItem { get; set; }
@@ -41,7 +39,7 @@ namespace MobileApp.PageModels.Admin
         public string ButtonText { get; set; }
         public bool Visibility { get; set; }
         public bool IsEdit { get; set; }
-        public List<Category> Categories { get; set; }
+        public ObservableCollection<Category> Categories { get; set; }
         public Category SelectedCategory { get; set; }
 
         private async Task CommandExecute()
@@ -78,7 +76,7 @@ namespace MobileApp.PageModels.Admin
                         Name = NewItem.Name,
                         Base64Image = NewItem.Logo,
                         Description = NewItem.Description,
-                        Price = NewItem.Description,
+                        Price = NewItem.Price.ToString(CultureInfo.InvariantCulture),
                         Categories = new[] { NewItem.ItemCategory.Name }
                     });
                 });
@@ -129,7 +127,7 @@ namespace MobileApp.PageModels.Admin
             }
         }
 
-        public override Task Init(object initData)
+        public override async Task Init(object initData)
         {
             if (initData == null)
             {
@@ -151,7 +149,26 @@ namespace MobileApp.PageModels.Admin
                 Visibility = true;
             }
 
-            return base.Init(initData);
+            await PopulateCategories();
+            await base.Init(initData);
+        }
+
+        async Task PopulateCategories()
+        {
+            try
+            {
+                string[] categories = null;
+                await Task.Run(() => { categories = App.UserBackendClient.GetCategories(); });
+                Categories =
+                    new ObservableCollection<Category>(categories.Select(u => new Category
+                    { Name = u, AddedDate = DateTime.Now.Date }));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)

@@ -12,6 +12,8 @@ namespace MobileApp.PageModels.User
     public class ProductsPageModel : BasePageModel
     {
         private Category _category;
+        public Command RefreshCommand { get; set; }
+        public bool IsRefreshing { get; set; }
 
         public ProductsPageModel()
         {
@@ -20,6 +22,50 @@ namespace MobileApp.PageModels.User
             {
                 new ShoppingItemModel()
             };
+            RefreshCommand = new Command(async () => await RefreshExecute());
+        }
+
+        private async Task RefreshExecute()
+        {
+
+            IsRefreshing = true;
+            if (_category == null)
+                try
+                {
+                    ItemResult[] allProducts = null;
+                    await Task.Run(() =>
+                    {
+                        allProducts = App.UserBackendClient.GetItems();
+
+                    });
+                    Products.Clear();
+                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                    throw;
+                }
+            else
+                try
+                {
+                    ItemResult[] allProducts = null;
+                    await Task.Run(() =>
+                     {
+                         allProducts = App.UserBackendClient.GetItemsInCategry(_category.Name);
+
+                     });
+                    Products.Clear();
+                    foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
+
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                    throw;
+                }
+
+            IsRefreshing = false;
         }
 
         public bool IsAdmin => App.IsAdmin;
@@ -47,43 +93,6 @@ namespace MobileApp.PageModels.User
 
         public ObservableCollection<ShoppingItemModel> Products { get; set; }
 
-        protected override void ViewIsAppearing(object sender, EventArgs e)
-        {
-            base.ViewIsAppearing(sender, e);
-            UserDialogs.Instance.ShowLoading();
-            if (_category == null)
-                try
-                {
-                    ItemResult[] allProducts = null;
-                    Task.Run(() =>
-                    {
-                        allProducts = App.UserBackendClient.GetItems();
-                        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
-                    });
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                    throw;
-                }
-            else
-                try
-                {
-                    ItemResult[] allProducts = null;
-                    Task.Run(() =>
-                    {
-                        allProducts = App.UserBackendClient.GetItemsInCategry(_category.Name);
-                        foreach (var item in allProducts) Products.Add(new ShoppingItemModel(item));
-                    });
-
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                    throw;
-                }
-            UserDialogs.Instance.HideLoading();
-        }
 
         public override async Task Init(object initData)
         {
@@ -95,7 +104,6 @@ namespace MobileApp.PageModels.User
             {
                 var category = (Category)initData;
             }
-
 
             await base.Init(initData);
         }
