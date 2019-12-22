@@ -36,9 +36,9 @@ namespace MobileApp.PageModels.Shared
 
         private async Task LoginExecute()
         {
-            if (!IsLoginDataValid()) return;
-            if (await Login())
-                LoadMasterDetail();
+            //if (!IsLoginDataValid()) return;
+            //if (await Login())
+             LoadMasterDetail();
         }
 
         public void LoadMasterDetail()

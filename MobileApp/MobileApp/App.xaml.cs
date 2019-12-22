@@ -14,7 +14,7 @@ namespace MobileApp
         {
             InitializeComponent();
             LoadBasicNav();
-            IsAdmin = false;
+            IsAdmin = true;
         }
 
         public static bool IsAdmin { get; set; }
