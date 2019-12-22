@@ -32,7 +32,7 @@ namespace Backend.Services
         public string RegisterAdmin(string adminToken, UserDataRequest adminData)
         {
             Auth.EnsureAuthorizedAsAdmin(adminToken);
-            Auth.Register(adminData, false);
+            Auth.Register(adminData, true);
             return Login(adminData.Email, adminData.Password);
         }
     }

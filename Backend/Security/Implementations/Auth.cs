@@ -58,7 +58,7 @@ namespace Backend.Security.Implementations
             User u = Helpers.MapTo<User>(request);
             u.IsAdmin = IsAdmin;
             u.Password = Hash.Hash(u.Password);
-            UserRepository.Insert(u);
+            UserRepository.Insert(u).Wait();
             return u;
         }
     }
