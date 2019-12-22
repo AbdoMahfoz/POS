@@ -14,5 +14,7 @@ namespace Backend.Services
         string RegisterAdmin(string adminToken, UserDataRequest adminData);
         [OperationContract]
         string RefreshToken(string token);
+        [OperationContract]
+        bool IsAdmin(string token);
     }
 }

@@ -51,9 +51,9 @@ namespace Backend.Repository
         }
         public virtual void SoftDelete(T entity)
         {
+            Entities.Attach(entity);
             entity.IsDeleted = true;
             entity.DeletedDate = DateTime.UtcNow;
-            Entities.Attach(entity);
             SaveChanges();
         }
         public virtual void SoftDeleteRange(IEnumerable<T> Entities)
