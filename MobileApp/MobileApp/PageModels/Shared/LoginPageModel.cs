@@ -17,11 +17,9 @@ namespace MobileApp.PageModels.Shared
             NavigateToLogin = new Command(async () => await LoginExecute());
         }
 
-        public bool IsAdmin
-        {
-            get => App.IsAdmin;
-            set => App.IsAdmin = value;
-        }
+        public bool IsAdmin => App.IsAdmin;
+
+
 
         public string Email { get; set; }
         public string Password { get; set; }
@@ -36,9 +34,15 @@ namespace MobileApp.PageModels.Shared
 
         private async Task LoginExecute()
         {
-            //if (!IsLoginDataValid()) return;
-            //if (await Login())
-             LoadMasterDetail();
+            if (!IsLoginDataValid()) return;
+            if (await Login())
+            {
+                LoadMasterDetail();
+                UserDialogs.Instance.Alert(App.Token, "HEY ABDO");
+            }
+            else
+                UserDialogs.Instance.Alert("Email or password is incorrect", "Something went wrong");
+
         }
 
         public void LoadMasterDetail()
@@ -55,7 +59,11 @@ namespace MobileApp.PageModels.Shared
             UserDialogs.Instance.ShowLoading();
             try
             {
-                string token = await App.AuthenticationClient.LoginAsync(Email, Password);
+                string token = "";
+                await Task.Run(() =>
+                {
+                    token = App.AuthenticationClient.Login(Email, Password);
+                });
                 if (string.IsNullOrWhiteSpace(token)) return false;
                 App.Token = token;
                 return true;

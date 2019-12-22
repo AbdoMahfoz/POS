@@ -1,9 +1,9 @@
 ﻿{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
-  "Version": "15.0.30730.948",
+  "Version": "15.0.31022.994",
   "ExtendedData": {
     "inputs": [
-      "http://localhost:8081/"
+      "http://localhost:8081"
     ],
     "collectionTypes": [
       "System.Array",
@@ -14,8 +14,8 @@
     ],
     "references": [
       "Acr.UserDialogs, {Acr.UserDialogs, 7.0.35}",
-      "D:\\Projects\\POS\\MobileApp\\MobileApp\\bin\\Debug\\netstandard2.0\\FreshIOC.dll",
-      "D:\\Projects\\POS\\MobileApp\\MobileApp\\bin\\Debug\\netstandard2.0\\FreshMvvm.dll",
+      "C:\\Projects\\POS\\MobileApp\\MobileApp\\bin\\Debug\\netstandard2.0\\FreshIOC.dll",
+      "C:\\Projects\\POS\\MobileApp\\MobileApp\\bin\\Debug\\netstandard2.0\\FreshMvvm.dll",
       "Plugin.ImageEdit, {Xamarin.Plugin.ImageEdit, 1.0.0}",
       "Plugin.ImageEdit.Abstractions, {Xamarin.Plugin.ImageEdit, 1.0.0}",
       "Plugin.Media, {Xam.Plugin.Media, 4.0.1.5}",
@@ -38,6 +38,7 @@
       "Xamarin.Forms.Platform, {Xamarin.Forms, 4.4.0.991265}",
       "Xamarin.Forms.Xaml, {Xamarin.Forms, 4.4.0.991265}"
     ],
+    "sync": true,
     "targetFramework": "netstandard2.0",
     "typeReuseMode": "All"
   }

@@ -13,7 +13,7 @@ namespace UserService
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class ItemResult : UserService.ItemRequest
     {
@@ -35,7 +35,7 @@ namespace UserService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(UserService.ItemResult))]
     public partial class ItemRequest : object
@@ -117,46 +117,73 @@ namespace UserService
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.IUserService")]
     public interface IUserService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
+        UserService.ItemResult[] GetItems();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
+        string[] GetCategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+        UserService.ItemResult[] GetItemsInCategry(string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
+        void AddToCart(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUserService/AddToCart")]
         System.Threading.Tasks.Task AddToCartAsync(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SetItemCountInCart", ReplyAction="http://tempuri.org/IUserService/SetItemCountInCartResponse")]
+        void SetItemCountInCart(string token, int ItemId, int newCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/SetItemCountInCart", ReplyAction="http://tempuri.org/IUserService/SetItemCountInCartResponse")]
         System.Threading.Tasks.Task SetItemCountInCartAsync(string token, int ItemId, int newCount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteItemFromCart", ReplyAction="http://tempuri.org/IUserService/DeleteItemFromCartResponse")]
+        void DeleteItemFromCart(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteItemFromCart", ReplyAction="http://tempuri.org/IUserService/DeleteItemFromCartResponse")]
         System.Threading.Tasks.Task DeleteItemFromCartAsync(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetCart", ReplyAction="http://tempuri.org/IUserService/GetCartResponse")]
+        UserService.ItemResult[] GetCart(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetCart", ReplyAction="http://tempuri.org/IUserService/GetCartResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/PurchaseCart", ReplyAction="http://tempuri.org/IUserService/PurchaseCartResponse")]
+        bool PurchaseCart(string token, bool IsCreditCard, System.Nullable<int> pin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/PurchaseCart", ReplyAction="http://tempuri.org/IUserService/PurchaseCartResponse")]
         System.Threading.Tasks.Task<bool> PurchaseCartAsync(string token, bool IsCreditCard, System.Nullable<int> pin);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPurchaseHistory", ReplyAction="http://tempuri.org/IUserService/GetPurchaseHistoryResponse")]
+        UserService.ItemResult[] GetPurchaseHistory(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetPurchaseHistory", ReplyAction="http://tempuri.org/IUserService/GetPurchaseHistoryResponse")]
         System.Threading.Tasks.Task<UserService.ItemResult[]> GetPurchaseHistoryAsync(string token);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface IUserServiceChannel : UserService.IUserService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class UserServiceClient : System.ServiceModel.ClientBase<UserService.IUserService>, UserService.IUserService
     {
         
@@ -200,9 +227,19 @@ namespace UserService
         {
         }
         
+        public UserService.ItemResult[] GetItems()
+        {
+            return base.Channel.GetItems();
+        }
+        
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsAsync()
         {
             return base.Channel.GetItemsAsync();
+        }
+        
+        public string[] GetCategories()
+        {
+            return base.Channel.GetCategories();
         }
         
         public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
@@ -210,9 +247,19 @@ namespace UserService
             return base.Channel.GetCategoriesAsync();
         }
         
+        public UserService.ItemResult[] GetItemsInCategry(string Category)
+        {
+            return base.Channel.GetItemsInCategry(Category);
+        }
+        
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetItemsInCategryAsync(string Category)
         {
             return base.Channel.GetItemsInCategryAsync(Category);
+        }
+        
+        public void AddToCart(string token, int ItemId)
+        {
+            base.Channel.AddToCart(token, ItemId);
         }
         
         public System.Threading.Tasks.Task AddToCartAsync(string token, int ItemId)
@@ -220,9 +267,19 @@ namespace UserService
             return base.Channel.AddToCartAsync(token, ItemId);
         }
         
+        public void SetItemCountInCart(string token, int ItemId, int newCount)
+        {
+            base.Channel.SetItemCountInCart(token, ItemId, newCount);
+        }
+        
         public System.Threading.Tasks.Task SetItemCountInCartAsync(string token, int ItemId, int newCount)
         {
             return base.Channel.SetItemCountInCartAsync(token, ItemId, newCount);
+        }
+        
+        public void DeleteItemFromCart(string token, int ItemId)
+        {
+            base.Channel.DeleteItemFromCart(token, ItemId);
         }
         
         public System.Threading.Tasks.Task DeleteItemFromCartAsync(string token, int ItemId)
@@ -230,14 +287,29 @@ namespace UserService
             return base.Channel.DeleteItemFromCartAsync(token, ItemId);
         }
         
+        public UserService.ItemResult[] GetCart(string token)
+        {
+            return base.Channel.GetCart(token);
+        }
+        
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetCartAsync(string token)
         {
             return base.Channel.GetCartAsync(token);
         }
         
+        public bool PurchaseCart(string token, bool IsCreditCard, System.Nullable<int> pin)
+        {
+            return base.Channel.PurchaseCart(token, IsCreditCard, pin);
+        }
+        
         public System.Threading.Tasks.Task<bool> PurchaseCartAsync(string token, bool IsCreditCard, System.Nullable<int> pin)
         {
             return base.Channel.PurchaseCartAsync(token, IsCreditCard, pin);
+        }
+        
+        public UserService.ItemResult[] GetPurchaseHistory(string token)
+        {
+            return base.Channel.GetPurchaseHistory(token);
         }
         
         public System.Threading.Tasks.Task<UserService.ItemResult[]> GetPurchaseHistoryAsync(string token)

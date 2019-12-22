@@ -13,7 +13,7 @@ namespace AuthenticationService
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDataResponse", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AuthenticationService.UserDataRequest))]
     public partial class UserDataResponse : object
@@ -81,7 +81,7 @@ namespace AuthenticationService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDataRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class UserDataRequest : AuthenticationService.UserDataResponse
     {
@@ -102,31 +102,43 @@ namespace AuthenticationService
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AuthenticationService.IAuthenticationService")]
     public interface IAuthenticationService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Login", ReplyAction="http://tempuri.org/IAuthenticationService/LoginResponse")]
+        string Login(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Login", ReplyAction="http://tempuri.org/IAuthenticationService/LoginResponse")]
         System.Threading.Tasks.Task<string> LoginAsync(string email, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Register", ReplyAction="http://tempuri.org/IAuthenticationService/RegisterResponse")]
+        string Register(AuthenticationService.UserDataRequest userData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/Register", ReplyAction="http://tempuri.org/IAuthenticationService/RegisterResponse")]
         System.Threading.Tasks.Task<string> RegisterAsync(AuthenticationService.UserDataRequest userData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/RegisterAdmin", ReplyAction="http://tempuri.org/IAuthenticationService/RegisterAdminResponse")]
+        string RegisterAdmin(string adminToken, AuthenticationService.UserDataRequest adminData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/RegisterAdmin", ReplyAction="http://tempuri.org/IAuthenticationService/RegisterAdminResponse")]
         System.Threading.Tasks.Task<string> RegisterAdminAsync(string adminToken, AuthenticationService.UserDataRequest adminData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/RefreshToken", ReplyAction="http://tempuri.org/IAuthenticationService/RefreshTokenResponse")]
+        string RefreshToken(string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationService/RefreshToken", ReplyAction="http://tempuri.org/IAuthenticationService/RefreshTokenResponse")]
         System.Threading.Tasks.Task<string> RefreshTokenAsync(string token);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface IAuthenticationServiceChannel : AuthenticationService.IAuthenticationService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class AuthenticationServiceClient : System.ServiceModel.ClientBase<AuthenticationService.IAuthenticationService>, AuthenticationService.IAuthenticationService
     {
         
@@ -170,9 +182,19 @@ namespace AuthenticationService
         {
         }
         
+        public string Login(string email, string password)
+        {
+            return base.Channel.Login(email, password);
+        }
+        
         public System.Threading.Tasks.Task<string> LoginAsync(string email, string password)
         {
             return base.Channel.LoginAsync(email, password);
+        }
+        
+        public string Register(AuthenticationService.UserDataRequest userData)
+        {
+            return base.Channel.Register(userData);
         }
         
         public System.Threading.Tasks.Task<string> RegisterAsync(AuthenticationService.UserDataRequest userData)
@@ -180,9 +202,19 @@ namespace AuthenticationService
             return base.Channel.RegisterAsync(userData);
         }
         
+        public string RegisterAdmin(string adminToken, AuthenticationService.UserDataRequest adminData)
+        {
+            return base.Channel.RegisterAdmin(adminToken, adminData);
+        }
+        
         public System.Threading.Tasks.Task<string> RegisterAdminAsync(string adminToken, AuthenticationService.UserDataRequest adminData)
         {
             return base.Channel.RegisterAdminAsync(adminToken, adminData);
+        }
+        
+        public string RefreshToken(string token)
+        {
+            return base.Channel.RefreshToken(token);
         }
         
         public System.Threading.Tasks.Task<string> RefreshTokenAsync(string token)

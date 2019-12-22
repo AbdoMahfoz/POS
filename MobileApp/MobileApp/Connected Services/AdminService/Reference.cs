@@ -13,7 +13,7 @@ namespace AdminService
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemResult", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     public partial class ItemResult : AdminService.ItemRequest
     {
@@ -35,7 +35,7 @@ namespace AdminService
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemRequest", Namespace="http://schemas.datacontract.org/2004/07/Backend.DataContracts")]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(AdminService.ItemResult))]
     public partial class ItemRequest : object
@@ -117,46 +117,73 @@ namespace AdminService
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdminService.IAdminService")]
     public interface IAdminService
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
+        AdminService.ItemResult[] GetItems();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItems", ReplyAction="http://tempuri.org/IItemService/GetItemsResponse")]
         System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
+        string[] GetCategories();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetCategories", ReplyAction="http://tempuri.org/IItemService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<string[]> GetCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
+        AdminService.ItemResult[] GetItemsInCategry(string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/GetItemsInCategry", ReplyAction="http://tempuri.org/IItemService/GetItemsInCategryResponse")]
         System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/InsertItem", ReplyAction="http://tempuri.org/IAdminService/InsertItemResponse")]
+        void InsertItem(string token, AdminService.ItemRequest item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/InsertItem", ReplyAction="http://tempuri.org/IAdminService/InsertItemResponse")]
         System.Threading.Tasks.Task InsertItemAsync(string token, AdminService.ItemRequest item);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateItem", ReplyAction="http://tempuri.org/IAdminService/UpdateItemResponse")]
+        void UpdateItem(string token, AdminService.ItemResult item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateItem", ReplyAction="http://tempuri.org/IAdminService/UpdateItemResponse")]
         System.Threading.Tasks.Task UpdateItemAsync(string token, AdminService.ItemResult item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteItem", ReplyAction="http://tempuri.org/IAdminService/DeleteItemResponse")]
+        void DeleteItem(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteItem", ReplyAction="http://tempuri.org/IAdminService/DeleteItemResponse")]
         System.Threading.Tasks.Task DeleteItemAsync(string token, int ItemId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddItemToCategory", ReplyAction="http://tempuri.org/IAdminService/AddItemToCategoryResponse")]
+        void AddItemToCategory(string token, int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddItemToCategory", ReplyAction="http://tempuri.org/IAdminService/AddItemToCategoryResponse")]
         System.Threading.Tasks.Task AddItemToCategoryAsync(string token, int ItemId, string Category);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/RemoveItemCateogry", ReplyAction="http://tempuri.org/IAdminService/RemoveItemCateogryResponse")]
+        void RemoveItemCateogry(string token, int ItemId, string Category);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/RemoveItemCateogry", ReplyAction="http://tempuri.org/IAdminService/RemoveItemCateogryResponse")]
         System.Threading.Tasks.Task RemoveItemCateogryAsync(string token, int ItemId, string Category);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddCategory", ReplyAction="http://tempuri.org/IAdminService/AddCategoryResponse")]
+        void AddCategory(string token, string newCategory);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddCategory", ReplyAction="http://tempuri.org/IAdminService/AddCategoryResponse")]
         System.Threading.Tasks.Task AddCategoryAsync(string token, string newCategory);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface IAdminServiceChannel : AdminService.IAdminService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class AdminServiceClient : System.ServiceModel.ClientBase<AdminService.IAdminService>, AdminService.IAdminService
     {
         
@@ -200,9 +227,19 @@ namespace AdminService
         {
         }
         
+        public AdminService.ItemResult[] GetItems()
+        {
+            return base.Channel.GetItems();
+        }
+        
         public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsAsync()
         {
             return base.Channel.GetItemsAsync();
+        }
+        
+        public string[] GetCategories()
+        {
+            return base.Channel.GetCategories();
         }
         
         public System.Threading.Tasks.Task<string[]> GetCategoriesAsync()
@@ -210,9 +247,19 @@ namespace AdminService
             return base.Channel.GetCategoriesAsync();
         }
         
+        public AdminService.ItemResult[] GetItemsInCategry(string Category)
+        {
+            return base.Channel.GetItemsInCategry(Category);
+        }
+        
         public System.Threading.Tasks.Task<AdminService.ItemResult[]> GetItemsInCategryAsync(string Category)
         {
             return base.Channel.GetItemsInCategryAsync(Category);
+        }
+        
+        public void InsertItem(string token, AdminService.ItemRequest item)
+        {
+            base.Channel.InsertItem(token, item);
         }
         
         public System.Threading.Tasks.Task InsertItemAsync(string token, AdminService.ItemRequest item)
@@ -220,9 +267,19 @@ namespace AdminService
             return base.Channel.InsertItemAsync(token, item);
         }
         
+        public void UpdateItem(string token, AdminService.ItemResult item)
+        {
+            base.Channel.UpdateItem(token, item);
+        }
+        
         public System.Threading.Tasks.Task UpdateItemAsync(string token, AdminService.ItemResult item)
         {
             return base.Channel.UpdateItemAsync(token, item);
+        }
+        
+        public void DeleteItem(string token, int ItemId)
+        {
+            base.Channel.DeleteItem(token, ItemId);
         }
         
         public System.Threading.Tasks.Task DeleteItemAsync(string token, int ItemId)
@@ -230,14 +287,29 @@ namespace AdminService
             return base.Channel.DeleteItemAsync(token, ItemId);
         }
         
+        public void AddItemToCategory(string token, int ItemId, string Category)
+        {
+            base.Channel.AddItemToCategory(token, ItemId, Category);
+        }
+        
         public System.Threading.Tasks.Task AddItemToCategoryAsync(string token, int ItemId, string Category)
         {
             return base.Channel.AddItemToCategoryAsync(token, ItemId, Category);
         }
         
+        public void RemoveItemCateogry(string token, int ItemId, string Category)
+        {
+            base.Channel.RemoveItemCateogry(token, ItemId, Category);
+        }
+        
         public System.Threading.Tasks.Task RemoveItemCateogryAsync(string token, int ItemId, string Category)
         {
             return base.Channel.RemoveItemCateogryAsync(token, ItemId, Category);
+        }
+        
+        public void AddCategory(string token, string newCategory)
+        {
+            base.Channel.AddCategory(token, newCategory);
         }
         
         public System.Threading.Tasks.Task AddCategoryAsync(string token, string newCategory)

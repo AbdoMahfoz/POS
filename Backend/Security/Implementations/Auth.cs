@@ -46,7 +46,7 @@ namespace Backend.Security.Implementations
                 return Tokenizer.Tokenize(new Dictionary<string, string>
                 {
                     { "Id", u.Id.ToString() } ,
-                    { "Name", u.Name },
+                    { "Name", u.Name ??"Anonymous"},
                     { "Role", u.IsAdmin? "Admin" : "User" }
                 });
             }
