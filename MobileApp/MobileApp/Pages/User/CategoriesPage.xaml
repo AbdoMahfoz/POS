@@ -13,14 +13,12 @@
             Padding="0,0,10,0"
             Orientation="Horizontal"
             Spacing="20">
-
             <Label
                 FontSize="Large"
-                HorizontalOptions="StartAndExpand"
                 Text="{Binding Title}"
                 TextColor="White"
+                HorizontalOptions="StartAndExpand"
                 VerticalOptions="CenterAndExpand" />
-
             <ImageButton
                 BackgroundColor="Transparent"
                 Command="{Binding OpenAddModalCommand}"
@@ -30,8 +28,8 @@
             <ImageButton
                 BackgroundColor="Transparent"
                 Command="{Binding OpenCartCommand}"
-                HorizontalOptions="Center"
                 Source="cart.png"
+                HorizontalOptions="Center"
                 VerticalOptions="Center" />
         </StackLayout>
     </NavigationPage.TitleView>
@@ -41,15 +39,17 @@
             IsRefreshing="{Binding IsRefreshing}"
             RefreshColor="{StaticResource SecColor}">
             <CollectionView
-                HorizontalOptions="Fill"
                 ItemSizingStrategy="MeasureFirstItem"
                 ItemsSource="{Binding Categories}"
+                SelectedItem="{Binding SelectedCategory}"
+                SelectionChangedCommand="{Binding ItemSelectedCommand}"
                 SelectionMode="Single"
+                HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.EmptyView>
                     <Label
-                        HorizontalOptions="CenterAndExpand"
                         Text="No Categories Added"
+                        HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand" />
                 </CollectionView.EmptyView>
                 <CollectionView.ItemsLayout>
@@ -59,13 +59,13 @@
                     <DataTemplate>
                         <Frame
                             Padding="0"
+                            HeightRequest="50"
                             BackgroundColor="White"
                             BorderColor="{StaticResource BorderGrey}"
                             CornerRadius="10"
                             HasShadow="True"
-                            HeightRequest="50"
-                            HorizontalOptions="Center"
-                            IsClippedToBounds="True">
+                            IsClippedToBounds="True"
+                            HorizontalOptions="Center">
                             <StackLayout
                                 Padding="10,0,10,0"
                                 Orientation="Horizontal"
@@ -75,11 +75,11 @@
                                     Text="{Binding Name}"
                                     TextColor="{StaticResource MainColor}" />
                                 <Image
+                                    WidthRequest="20"
                                     HeightRequest="20"
-                                    HorizontalOptions="EndAndExpand"
                                     Rotation="90"
                                     Source="up.png"
-                                    WidthRequest="20" />
+                                    HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
@@ -87,4 +87,4 @@
             </CollectionView>
         </RefreshView>
     </ContentPage.Content>
-</freshMvvm:FreshBaseContentPage>
+</freshMvvm:FreshBaseContentPage>   

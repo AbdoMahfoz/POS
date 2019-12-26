@@ -16,6 +16,7 @@ namespace MobileApp.PageModels.User
             Categories = new ObservableCollection<Category>();
             RefreshCommand = new Command(async () => await RefreshExecute());
         }
+        public Category SelectedCategory { get; set; }
 
         public bool IsRefreshing { get; set; }
 
@@ -37,6 +38,17 @@ namespace MobileApp.PageModels.User
             get
             {
                 return new Command(async () => { await CoreMethods.PushPageModel<CartPageModel>(null, true); });
+            }
+        }
+
+        public Command ItemSelectedCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await CoreMethods.PushPageModel<ProductsPageModel>(SelectedCategory);
+                });
             }
         }
 
