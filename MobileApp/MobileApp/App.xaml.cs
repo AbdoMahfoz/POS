@@ -1,9 +1,7 @@
 ﻿using AdminService;
 using AuthenticationService;
 using FreshMvvm;
-using MobileApp.PageModels.Shared;
 using MobileApp.PageModels.User;
-using System.ServiceModel;
 using UserService;
 using Xamarin.Forms;
 

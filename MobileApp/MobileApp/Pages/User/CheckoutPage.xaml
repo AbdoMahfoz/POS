@@ -3,6 +3,86 @@
     x:Class="MobileApp.Pages.User.CheckoutPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm">
-    <ContentPage.Content />
+    xmlns:controls="clr-namespace:MobileApp.Controls"
+    xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+    Title="{Binding Title}"
+    Style="{StaticResource ColoredNavBar}">
+    <ContentPage.Content>
+        <ScrollView Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    FontSize="Title"
+                    Text="You are paying"
+                    HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontSize="50"
+                    Text="{Binding Amount}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="Medium"
+                    Text="EGP"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Proceed with Credit Card"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+                <CheckBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    IsChecked="{Binding IsCreditCard}" />
+                <StackLayout
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Padding="20"
+                    Spacing="20">
+                    <controls:RoundedCornerEntry
+                        Placeholder="Name On Card"
+                        Style="{StaticResource LoginEntry}"
+                        Text="{Binding NameOnCard}" />
+                    <controls:RoundedCornerEntry
+                        Placeholder="Card Number"
+                        Style="{StaticResource LoginEntry}"
+                        Text="{Binding CardNumber}" />
+                    <controls:RoundedCornerEntry
+                        Placeholder="CVV"
+                        Style="{StaticResource LoginEntry}"
+                        Text="{Binding CVVNumber}" />
+                    <controls:RoundedCornerEntry
+                        IsPassword="True"
+                        Placeholder="Your Pin"
+                        Style="{StaticResource LoginEntry}"
+                        Text="{Binding Pin}" />
+                </StackLayout>
+                <Button
+                    Command="{Binding AddToCartCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Checkout" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
 </freshMvvm:FreshBaseContentPage>

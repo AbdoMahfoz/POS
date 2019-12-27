@@ -25,6 +25,7 @@ namespace MobileApp.PageModels.User
         public bool IsRefreshing { get; set; }
         public double FinalCost { get; set; } = 0.0;
         public ObservableCollection<ShoppingItemModel> CartItems { get; set; }
+
         public CartPageModel()
         {
             Title = "Your Cart";
