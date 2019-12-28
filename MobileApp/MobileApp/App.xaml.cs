@@ -1,8 +1,7 @@
 ﻿using AdminService;
 using AuthenticationService;
 using FreshMvvm;
-using MobileApp.PageModels.Shared;
-using System.ServiceModel;
+using MobileApp.PageModels.User;
 using UserService;
 using Xamarin.Forms;
 
@@ -23,7 +22,7 @@ namespace MobileApp
         public static UserServiceClient UserBackendClient { get; set; } =
             new UserServiceClient(UserServiceClient.EndpointConfiguration.BasicHttpBinding_IUserService,
                                  $"http://{IPAddress}:8080/svc");
-        public static AdminServiceClient AdminBackendClient { get; set; } = 
+        public static AdminServiceClient AdminBackendClient { get; set; } =
             new AdminServiceClient(AdminServiceClient.EndpointConfiguration.BasicHttpBinding_IAdminService,
                                    $"http://{IPAddress}:8081/svc");
         public static AuthenticationServiceClient AuthenticationClient { get; set; } =
@@ -32,7 +31,7 @@ namespace MobileApp
 
         public void LoadBasicNav()
         {
-            var page = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+            var page = FreshPageModelResolver.ResolvePageModel<CheckoutPageModel>();
             var basicNavContainer = new FreshNavigationContainer(page);
             MainPage = basicNavContainer;
         }

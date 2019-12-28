@@ -20,15 +20,15 @@
                 RefreshColor="{StaticResource SecColor}">
                 <CollectionView
                     x:Name="CollectionView"
-                    HorizontalOptions="Fill"
                     ItemSizingStrategy="MeasureFirstItem"
                     ItemsSource="{Binding CartItems}"
                     SelectionMode="Single"
+                    HorizontalOptions="Fill"
                     VerticalOptions="FillAndExpand">
                     <CollectionView.EmptyView>
                         <Label
-                            HorizontalOptions="CenterAndExpand"
                             Text="You cart is Empty :'("
+                            HorizontalOptions="CenterAndExpand"
                             VerticalOptions="CenterAndExpand" />
                     </CollectionView.EmptyView>
                     <CollectionView.ItemsLayout>
@@ -36,7 +36,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <!--<SwipeView Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <!--<SwipeView>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem
@@ -48,15 +48,14 @@
                                     </SwipeItems>
                                 </SwipeView.RightItems>-->
                             <Frame
-                                Padding="10"
+                                Padding="0"
+                                HeightRequest="75"
                                 BackgroundColor="White"
                                 BorderColor="{StaticResource BorderGrey}"
                                 CornerRadius="10"
                                 HasShadow="True"
-                                HeightRequest="75"
-                                HorizontalOptions="Center"
                                 IsClippedToBounds="True"
-                                WidthRequest="150">
+                                HorizontalOptions="Center">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -71,27 +70,27 @@
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="0"
-                                        HeightRequest="100"
-                                        HorizontalOptions="Center"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
                                         Source="{Binding Logo}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="100" />
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         FontSize="Title"
-                                        HorizontalOptions="Center"
                                         Text="{Binding Name}"
                                         TextColor="{StaticResource MainColor}"
+                                        HorizontalOptions="Center"
                                         VerticalOptions="Center" />
 
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         FontSize="Medium"
-                                        HorizontalOptions="Center"
                                         Text="{Binding Price}"
                                         TextColor="Gray"
+                                        HorizontalOptions="Center"
                                         VerticalOptions="Center" />
 
                                 </Grid>

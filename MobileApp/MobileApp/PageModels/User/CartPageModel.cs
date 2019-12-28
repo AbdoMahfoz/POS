@@ -16,7 +16,14 @@ namespace MobileApp.PageModels.User
         {
             get { return new Command(async () => { await CoreMethods.PopPageModel(null, true); }); }
         }
+
+        public Command CheckoutCommand
+        {
+            get { return new Command(async () => { await CoreMethods.PushPageModel<CheckoutPageModel>(FinalCost); }); }
+        }
+
         public bool IsRefreshing { get; set; }
+        public double FinalCost { get; set; } = 0.0;
         public ObservableCollection<ShoppingItemModel> CartItems { get; set; }
 
         public CartPageModel()
@@ -25,7 +32,16 @@ namespace MobileApp.PageModels.User
             CartItems = new ObservableCollection<ShoppingItemModel>();
             DeleteCommand = new Command(async o => await DeleteExecute(o));
             PulltoRefreshCommand = new Command(async () => await PulltoRefreshExecute());
+            CartItems.CollectionChanged += CartItems_CollectionChanged;
+        }
 
+        private void CartItems_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            FinalCost = 0.0;
+            foreach (var item in CartItems)
+            {
+                FinalCost += item.Price;
+            }
         }
 
         private async Task DeleteExecute(object obj)
