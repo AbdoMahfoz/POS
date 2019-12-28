@@ -57,6 +57,7 @@ namespace MobileApp.PageModels.User
             {
                 ItemResult[] allProducts = null;
                 await Task.Run(() => { allProducts = App.UserBackendClient.GetCart(App.Token); });
+                CartItems.Clear();
                 foreach (var item in allProducts) CartItems.Add(new ShoppingItemModel(item));
             }
             catch (Exception exception)

@@ -53,12 +53,6 @@
                     Command="{Binding NavigateToRegistration}"
                     Style="{StaticResource ButtonStyle}"
                     Text="Register" />
-
-                <Button
-                    BackgroundColor="#dd4c39"
-                    Command="{Binding NavigateToGPlus}"
-                    Style="{StaticResource ButtonStyle}"
-                    Text="Sign Up with Google" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

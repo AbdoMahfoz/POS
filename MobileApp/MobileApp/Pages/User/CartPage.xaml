@@ -36,7 +36,7 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <!--<SwipeView>
+                            <!--<SwipeView Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem
@@ -47,54 +47,55 @@
                                             Text="Delete" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>-->
-                                <Frame
-                                    Padding="0"
-                                    BackgroundColor="White"
-                                    BorderColor="{StaticResource BorderGrey}"
-                                    CornerRadius="10"
-                                    HasShadow="True"
-                                    HeightRequest="75"
-                                    HorizontalOptions="Center"
-                                    IsClippedToBounds="True">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
+                            <Frame
+                                Padding="10"
+                                BackgroundColor="White"
+                                BorderColor="{StaticResource BorderGrey}"
+                                CornerRadius="10"
+                                HasShadow="True"
+                                HeightRequest="75"
+                                HorizontalOptions="Center"
+                                IsClippedToBounds="True"
+                                WidthRequest="150">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
 
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.RowSpan="2"
-                                            Grid.Column="0"
-                                            HeightRequest="50"
-                                            HorizontalOptions="Center"
-                                            Source="{Binding Logo}"
-                                            VerticalOptions="Center"
-                                            WidthRequest="50" />
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            FontSize="Title"
-                                            HorizontalOptions="Center"
-                                            Text="{Binding Name}"
-                                            TextColor="{StaticResource MainColor}"
-                                            VerticalOptions="Center" />
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        HeightRequest="100"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Logo}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="100" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="Title"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource MainColor}"
+                                        VerticalOptions="Center" />
 
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            FontSize="Medium"
-                                            HorizontalOptions="Center"
-                                            Text="{Binding Price}"
-                                            TextColor="Gray"
-                                            VerticalOptions="Center" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="Medium"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Price}"
+                                        TextColor="Gray"
+                                        VerticalOptions="Center" />
 
-                                    </Grid>
-                                </Frame>
+                                </Grid>
+                            </Frame>
                             <!--</SwipeView>-->
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
